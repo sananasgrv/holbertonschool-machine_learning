@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-import numpy as np
+"""Documented"""
 import pandas as pd
 
 def from_numpy(array):
-    df = pd.DataFrame()
+    """Documented"""
+    df = pd.DataFrame(array)
+    return df
