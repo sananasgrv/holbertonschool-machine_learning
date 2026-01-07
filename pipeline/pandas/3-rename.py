@@ -5,5 +5,5 @@ import pandas as pd
 
 def rename(df):
     """Documented"""
-    new_df = df[["Timestamp", "Close"]].copy()
+    new_df = df[["Datetime", "Close"]].copy()
     return new_df
