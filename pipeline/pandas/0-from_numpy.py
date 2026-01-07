@@ -3,7 +3,6 @@
 import pandas as pd
 
 
-
 def from_numpy(array):
     """Documented"""
     df = pd.DataFrame(array,
