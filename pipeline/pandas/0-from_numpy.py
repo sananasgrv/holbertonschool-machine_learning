@@ -4,6 +4,6 @@ import pandas as pd
 
 def from_numpy(array):
     """Documented"""
-    df = pd.DataFrame(array)
-    df.sort_values(df.columns[0])
+    i = 65
+    df = pd.DataFrame(array, columns=[for i in range(df.shape[1])])
     return df
