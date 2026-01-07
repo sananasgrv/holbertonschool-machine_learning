@@ -5,5 +5,5 @@ import pandas as pd
 def from_numpy(array):
     """Documented"""
     df = pd.DataFrame(array)
-    df.sort_values(df.columns[0], inplace=True)
+    df.sort_values(df.columns[0])
     return df
