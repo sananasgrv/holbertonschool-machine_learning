@@ -6,5 +6,5 @@ index = __import__('10-index').index
 
 def concat(df1, df2):
     """Documented"""
-    df = pd.merge(df2, df1, on="Timestamp", how="left")
+    df = pd.concat([df2, df1])
     return df
