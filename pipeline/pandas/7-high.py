@@ -4,5 +4,5 @@
 
 def high(df):
     """Documented"""
-    df.sort_values(by=["High"], ascending=False)
-    return df
+    return df.sort_values(by=["High"], ascending=False)
+
