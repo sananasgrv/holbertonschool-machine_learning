@@ -3,5 +3,5 @@
 
 
 def index(df):
-    df = df.index(df["Timestamp"])
+    df = df.set_index("Timestamp")
     return df
