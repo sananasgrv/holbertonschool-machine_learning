@@ -4,7 +4,7 @@
 
 def fill(df):
     """Documented"""
-    df = df.drop("Weighted_Price")
+    df = df.drop(["Weighted_Price"])
     df = df.fillna(subset=["Close"], method="ffill")
     df = df.fillna(subset=["High", "Low", "Open"], value=df["Close"])
     df = df.fillna(subset=["Volume_(BTC)","Volume_(Currency)"], value=0)
