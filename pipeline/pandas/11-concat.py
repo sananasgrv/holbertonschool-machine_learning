@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
+import pandas as pd
 index = __import__('10-index').index
 
 
