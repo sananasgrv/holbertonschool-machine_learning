@@ -4,5 +4,5 @@
 
 def prune(df):
     """Documented"""
-    df["Close"].dropna()
+    df.dropna(subset=["Close"])
     return df
