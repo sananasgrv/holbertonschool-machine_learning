@@ -5,4 +5,4 @@ index = __import__('10-index').index
 
 def concat(df1, df2):
     """Documented"""
-    pd.
+    return df1,df2
