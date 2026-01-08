@@ -4,5 +4,5 @@
 
 def flip_switch(df):
     """Documented"""
-    df.sort_values(by=["Timestamp"], ascending=True, inplace=True)
+    df.sort_values(by=["Timestamp"], ascending=False, inplace=True)
     return df.T
