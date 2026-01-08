@@ -7,5 +7,5 @@ def rename(df):
     """Documented"""
     new_df = df.loc[:, ["Timestamp", "Close"]]
     new_df = new_df.rename(columns={"Timestamp": "Datetime"})
-    new_df = new_df.timestamp(["Datetime"])
+    new_df = new_df(["Datetime"]).timestamp()
     return new_df
