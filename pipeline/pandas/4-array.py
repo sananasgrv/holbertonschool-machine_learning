@@ -4,5 +4,5 @@
 
 def array(df):
     """Documented"""
-    new_df = df["High", "Close"].tail(10)
+    new_df = df.column(["High", "Close"]).tail(10)
     return new_df.to_numpy()
