@@ -4,5 +4,4 @@
 
 def array(df):
     """Documented"""
-    df.loc[:10, ["High", "Close"]]
-    return df
+    return df["High", "Close"].tail(10)
