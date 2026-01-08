@@ -4,6 +4,6 @@
 
 def array(df):
     """Documented"""
-    new_df = df.column(["High", "Close"]).tail(10)
-    new_df = new_df.to_numpy()
+    new_df = df[["Datetime", "Close"]].to_numpy()
+    new_df = new_df.tail(10)
     return new_df
