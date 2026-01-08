@@ -4,5 +4,6 @@
 
 def slice(df):
     """Documented"""
-    new_df = df[["High", "Low", "Close", "Volume_BTC"]].head(60)
+    for i in range(0, df.shape[0], 60):
+        new_df =+ df.loc[df.index(i) , ["High", "Low", "Close", "Volume_BTC"]]
     return new_df
