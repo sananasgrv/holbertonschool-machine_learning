@@ -3,4 +3,5 @@
 
 
 def index(df):
+    df = df.index(df["Timestamp"])
     return df
