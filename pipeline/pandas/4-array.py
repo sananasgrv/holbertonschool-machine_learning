@@ -4,4 +4,5 @@
 
 def array(df):
     """Documented"""
-    return df["High", "Close"].tail(10)
+    new_df = df["High", "Close"].tail(10)
+    return new_df
