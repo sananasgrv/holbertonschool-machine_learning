@@ -4,4 +4,4 @@
 
 def analyze(df):
     """Documented"""
-    return df.describe(exclude=["Timestamp"])
+    return df.describe()
