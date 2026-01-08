@@ -4,5 +4,5 @@
 
 def prune(df):
     """Documented"""
-    df["Close"].dropna(how="any")
+    df["Close"].dropna()
     return df
