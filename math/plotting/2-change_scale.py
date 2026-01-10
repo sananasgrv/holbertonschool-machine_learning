@@ -18,5 +18,3 @@ def change_scale():
     plt.yscale("log")
     plt.plot(x, y)
     return plt.show()
-
-print(change_scale())
