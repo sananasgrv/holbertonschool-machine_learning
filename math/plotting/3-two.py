@@ -34,5 +34,3 @@ def two():
     plt.plot(x, y2, color="green", label="Ra-226")
     plt.legend(["Ca-14", "Ra-226"], loc="upper right")
     return plt.show()
-
-print(two())
