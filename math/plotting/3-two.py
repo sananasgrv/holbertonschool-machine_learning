@@ -6,6 +6,7 @@ Complete the following source code
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def two():
     """
     The x-axis should be labeled Time (years)
