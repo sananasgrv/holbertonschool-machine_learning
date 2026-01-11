@@ -52,5 +52,3 @@ def bars():
     plt.ylabel("Quantity of Fruit")
     plt.legend(loc="upper right")
     plt.show()
-
-print(bars())
