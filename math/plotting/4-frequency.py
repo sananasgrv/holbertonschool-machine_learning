@@ -27,4 +27,3 @@ def frequency():
     plt.xticks(bins1)
 
     return plt.show()
-print(frequency())
