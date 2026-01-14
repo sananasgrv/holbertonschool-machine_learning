@@ -4,7 +4,7 @@
 
 def summation_i_squared(n):
     """i from 1 to n """
-    if type(n) is not int:
+    if (type(n) is not int) or (n is None) or (n < 1):
         return None
     else:
         number = list(range(1, n + 1))
