@@ -16,7 +16,7 @@ def poly_derivative(poly):
     """
     if type(poly) is not list or poly == [] :
         return None
-    elif poly[0] == 0 and len(poly) < 1:
+    elif poly[0] == 0 and len(poly) == 1:
         return [0]
     else:
         result = []
@@ -25,3 +25,6 @@ def poly_derivative(poly):
         if result[0] == 0 :
             result.pop(0)
         return result
+
+poly = [0]
+print(poly_derivative(poly))
