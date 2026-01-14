@@ -14,7 +14,7 @@ def poly_derivative(poly):
     If the derivative is 0, return [0]
     Return a new list of coefficients representing the derivative of the polynomial
     """
-    if poly is None :
+    if type(poly) is not list or poly == [] :
         return None
     else:
         result = []
