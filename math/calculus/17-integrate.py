@@ -12,8 +12,8 @@ def poly_integral(poly, C=0):
             result = [C]
             for i in range(len(poly)):
                 result.append(poly[i] / (i+1))
-            for u in range(len(result)):
                 result[i] = int(result[i]) if result[i] % 1 == 0 else result[i]
+            resu
         return result
     else:
         return None
