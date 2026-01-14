@@ -12,4 +12,4 @@ def summation_i_squared(n):
         numbers = list(range(1, n + 1))
         result = 0
         result = map(lambda i: i ** 2, numbers)
-        return result
+        return sum(result)
