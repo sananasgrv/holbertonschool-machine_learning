@@ -13,7 +13,6 @@ def poly_integral(poly, C=0):
             for i in range(len(poly)):
                 result.append(poly[i] / (i+1))
                 result[i] = int(result[i]) if result[i] % 1 == 0 else result[i]
-            resu
         return result
     else:
         return None
