@@ -1,1 +1,1 @@
-README file of the linear algebra
+README file of the linear algebra section
