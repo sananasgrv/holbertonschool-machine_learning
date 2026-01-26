@@ -13,10 +13,9 @@ def cat_matrices2D(mat1, mat2, axis=0):
             return None
 
     if axis == 0:
-        for i in range(len(mat2)):
-            result.append(mat2[i])
-    elif axis == 1:
-        for j in range(len(mat1)):
-            for_size = mat2[j]
-            result[j].append(for_size[0])
+        for row in mat2:
+            result.append(row.copy())
+    else:
+        for i in range(len(result)):
+            result[i].extend(mat2[i])
     return result
