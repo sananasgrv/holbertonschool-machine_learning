@@ -6,11 +6,7 @@ def matrix_shape(matrix):
     """Documented"""
     result = []
     result.append(len(matrix))
-    result.append(len(matrix[0]))
-    try:
-        for_size = matrix[0]
-        result.append(len(for_size[0]))
-        print(result)
-    except TypeError:
-        print(result)
-
+    if type(matrix[0]) is not list:
+        return result
+    else:
+        return result + matrix_shape(matrix[0])
