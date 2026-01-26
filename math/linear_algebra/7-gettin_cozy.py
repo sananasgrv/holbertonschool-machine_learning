@@ -14,4 +14,3 @@ def cat_matrices2D(mat1, mat2, axis=0):
             for_size = mat2[j]
             result[j].append(for_size[0])
     return result
-
