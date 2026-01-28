@@ -5,20 +5,12 @@
 def mat_mul(mat1, mat2):
     """Documented"""
     result = []
-    if len(mat1) != len(mat2[0]):
+    for i in range(len(mat1)):
+        result.append([0 for j in range(len(mat2[0]))])
+    if len(mat1[0]) != len(mat2):
         return None
     else:
-        pass
-        # for i in range(len(mat1[0])):
-        #     result.append([mat1[i][j])
-
-
-#
-# mat1 = [[1, 2],
-#         [3, 4],
-#         [5, 6]]
-# mat2 = [[1, 2, 3, 4],
-#         [5, 6, 7, 8]]
-# print(mat_mul(mat1, mat2))
-
-    
+        for i in range(len(mat1)):
+            for j in range(len(mat2[0])):
+                result[i][j] = mat1[i][j] * mat2[j][i]
+        return result
