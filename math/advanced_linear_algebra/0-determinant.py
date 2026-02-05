@@ -20,4 +20,4 @@ def determinant(matrix):
         for col in range(len(matrix)):
             sub_matrix = [row[:col] + row[col+1:] for row in matrix[1:]]
             det += ((-1) ** col) * matrix[0][col] * determinant(sub_matrix)
-        return det
+    return det
