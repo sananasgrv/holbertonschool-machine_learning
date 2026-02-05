@@ -7,7 +7,7 @@ def determinant(matrix):
     det = 0
 
     if matrix == [[]]:
-        return 0
+        return 1
 
     # Validate matrix
     for row in matrix:
