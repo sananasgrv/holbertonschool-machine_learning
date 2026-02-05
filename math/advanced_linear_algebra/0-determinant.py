@@ -10,10 +10,14 @@ def determinant(matrix):
     for i in matrix:
         if type(i) != list:
             raise TypeError("matrix must be a list of lists")
-        if len(matrix[i]) != len(matrix):
+        if len(i) != len(matrix):
             raise TypeError("matrix must be a list of lists")
+    if len(matrix) == 1:
+        return matrix[0][0]
     if len(matrix[0]) == 2:
-        det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
     else:
-        for i in range(len(matrix)):
-            minor =
+        for col in range(len(matrix)):
+            sub_matrix = [row[:col] + row[col+1:] for row in matrix[1:]]
+            det += ((-1) ** col) * matrix[0][col] * determinant(sub_matrix)
+        return det
