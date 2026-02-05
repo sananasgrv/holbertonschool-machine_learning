@@ -13,7 +13,7 @@ def minor(matrix):
         if len(i) != len(matrix) or matrix == [[]]:
             raise ValueError("matrix must be a non-empty square matrix")
     if len(matrix) == 1:
-        return 1
+        return [[1]]
     else:
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
