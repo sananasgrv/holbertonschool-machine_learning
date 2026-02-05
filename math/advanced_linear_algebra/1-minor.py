@@ -21,3 +21,4 @@ def minor(matrix):
                               row in (matrix[:i] + matrix[i+1:])]
                 minor_mat[i][j] = determinant(sub_matrix)
         return minor_mat
+        
