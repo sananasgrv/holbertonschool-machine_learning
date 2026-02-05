@@ -4,7 +4,7 @@ adjugate = __import__('3-adjugate').adjugate
 determinant = __import__('0-determinant').determinant
 
 
-def adjugate(matrix):
+def inverse(matrix):
     """Documented"""
     if (not isinstance(matrix, list) or
             not all(isinstance(row, list) for row in matrix)):
