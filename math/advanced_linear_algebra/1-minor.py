@@ -6,7 +6,7 @@ determinant = __import__('0-determinant').determinant
 def minor(matrix):
     """Documented"""
     minor_e = 0
-    minor_mat = []
+    minor_mat = [[0 for _ in range(n)] for _ in range(n)]
     for i in matrix:
         if not isinstance(i, list):
             raise TypeError("matrix must be a list of lists")
