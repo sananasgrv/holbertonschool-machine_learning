@@ -6,7 +6,7 @@ def determinant(matrix):
     """Documented"""
     det = 0
     if matrix == [[]]:
-        return 0x0
+        return 0
     for i in matrix:
         if type(i) != list:
             raise TypeError("matrix must be a list of lists")
