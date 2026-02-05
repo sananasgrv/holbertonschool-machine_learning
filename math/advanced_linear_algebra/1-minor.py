@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
+determinant = __import__('0-determinant').determinant
 
 
 def minor(matrix):
@@ -13,10 +14,10 @@ def minor(matrix):
             raise ValueError("matrix must be a non-empty square matrix")
     if len(matrix) == 1:
         return 1
-    elif len(matrix) == 2:
-        return matrix.reverse()
     else:
-        for row in range(len(matrix)):
-            for col in range(len(matrix[0])):
-                minor_e =
-                minor_mat.append(matrix[row][col])
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                sub_matrix = [row[:j] + row[j+1:] for
+                              row in (matrix[:i] + matrix[i+1:])]
+                minor_mat[i][j] = determinant(sub_matrix)
+        return minor_mat
