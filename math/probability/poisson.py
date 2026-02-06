@@ -25,7 +25,6 @@ class Poisson:
             k = int(k)
         if k < 0:
             return 0
-        #P(X=k) == (e^(-lamb) * lamb^k)/k!
         e = 2.7182818285
         first_nom = pow(e, -self.lambtha)
         second_nom = pow(self.lambtha, k)
