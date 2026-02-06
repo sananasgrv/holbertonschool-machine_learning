@@ -19,7 +19,7 @@ class Exponential:
 
     def pdf(self, x):
         """Documented"""
-        if x <= 0:
+        if x < 0:
             return 0
         pdf = self.lambtha * pow(self.e, -self.lambtha * x)
         return pdf
