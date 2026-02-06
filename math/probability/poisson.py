@@ -33,3 +33,15 @@ class Poisson:
         for i in range(1, k+1):
             denominator *= i
         return (first_nom * second_nom) / denominator
+
+    def cdf(self, k):
+        """Cumulative distribution function"""
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0:
+            return 0
+        e = 2.7182818285
+        cdf_value = 0
+        for i in range(k+1):
+            cdf_value += self.pmf(i)
+        return cdf_value
