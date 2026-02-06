@@ -27,9 +27,10 @@ class Poisson:
             return 0
         #P(X=k) == (e^(-lamb) * lamb^k)/k!
         e = 2.7182818285
-        first_nom = pow(e, -1*self.lambtha)
+        first_nom = pow(e, -self.lambtha)
         second_nom = pow(self.lambtha, k)
-        denominator = 0
-        for i in range(1, k):
-            denominator = denominator * i
+
+        denominator = 1
+        for i in range(1, k+1):
+            denominator *= i
         return (first_nom * second_nom) / denominator
