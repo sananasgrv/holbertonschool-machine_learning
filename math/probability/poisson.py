@@ -17,3 +17,19 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = sum(data)/len(data)
+
+    e = 2.7182818285
+    def pmf(self, k):
+        """Probability density function"""
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0:
+            return 0
+        #P(X=k) == (e^(-lamb) * lamb^k)/k!
+        e = 2.7182818285
+        first_nom = pow(e, -1*self.lambtha)
+        second_nom = pow(self.lambtha, k)
+        denominator = 0
+        for i in range(1, k):
+            denominator = denominator * i
+        return (first_nom * second_nom) / denominator
