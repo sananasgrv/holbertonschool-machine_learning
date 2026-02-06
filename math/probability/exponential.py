@@ -24,3 +24,11 @@ class Exponential:
             return 0
         pdf = self.lambtha * pow(self.e, -self.lambtha * x)
         return pdf
+
+    def cdf(self, x):
+        """Documented"""
+        if x < 0:
+            return 0
+        cdf = 0
+        for i in range(x+1):
+            cdf += 1 - pow(self.e, -self.lambtha * x)
