@@ -41,6 +41,8 @@ class Normal:
         """docstring for cdf"""
         pi = 3.1415926536
         e = 2.7182818285
-        return 0.5 * (1 + self.erf(
-            ((x - self.mean) / (self.stddev * (2 ** 0.5)))
-        ))
+        val = (x - self.mean) / (self.stddev * (2 ** (1 / 2)))
+        erf1 = (2 / Normal.pi ** (1 / 2))
+        erf2 = (val - (val**3)/3 + (val**5)/10 - (val**7)/42 + (val**9)/216)
+        cdf = (1 / 2) * (1 + erf1 * erf2)
+        return cdf
