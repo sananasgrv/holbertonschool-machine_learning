@@ -36,3 +36,11 @@ class Normal:
         e = 2.7182818285
         z = (x - self.mean) / self.stddev
         return (1 / (self.stddev * (2 * pi) ** 0.5)) * (e ** (-0.5 * z ** 2))
+
+    def cdf(self, x):
+        """docstring for cdf"""
+        pi = 3.1415926536
+        e = 2.7182818285
+        return 0.5 * (1 + self.erf(
+            ((x - self.mean) / (self.stddev * (2 ** 0.5)))
+        ))
