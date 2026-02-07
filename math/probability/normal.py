@@ -19,3 +19,11 @@ class Normal:
             self.mean = sum(data) / len(data)
             variance = sum((i-self.mean)**2 for i in data) / len(data)
             self.stddev = variance ** 0.5
+
+    def z_score(self, x):
+        """docstring for z_score"""
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        """docstring for x_value"""
+        return z * self.stddev + self.mean
