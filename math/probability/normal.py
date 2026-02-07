@@ -27,3 +27,6 @@ class Normal:
     def x_value(self, z):
         """docstring for x_value"""
         return z * self.stddev + self.mean
+
+    def pdf(self, x):
+        """docstring for pdf"""
