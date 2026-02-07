@@ -4,6 +4,8 @@
 
 class Normal:
     """docstring for Exponential"""
+    e = 2.7182818285
+    pi = 3.1415926536
 
     def __init__(self, data=None, mean=0., stddev=1.):
         if data is None:
@@ -30,3 +32,4 @@ class Normal:
 
     def pdf(self, x):
         """docstring for pdf"""
+        return (self.e **(-self.z_score(x)/2))/ (2 * self.pi) ** 0.5
