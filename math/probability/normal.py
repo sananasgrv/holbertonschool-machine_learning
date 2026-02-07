@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Documented"""
-import math
 
 
 class Normal:
