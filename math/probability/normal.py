@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
+import math
 
 
 class Normal:
@@ -17,5 +18,5 @@ class Normal:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.mean = sum(data) / len(data)
-            self.stddev = (sum((data[i]-self.mean)**2 for i in range(len(data))) / len(data) ** 0.5)
-
+            variance = sum((data[i]-self.mean)**2 for i in range(len(data))) / len(data)
+            self.stddev = variance ** 0.5
