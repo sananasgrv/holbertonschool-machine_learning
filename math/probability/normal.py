@@ -32,4 +32,7 @@ class Normal:
 
     def pdf(self, x):
         """docstring for pdf"""
-        return (self.e **(-self.z_score(x)/2))/ (2 * self.pi) ** 0.5
+        pi = 3.1415926536
+        e = 2.7182818285
+        z = (x - self.mean) / self.stddev
+        return (1 / (self.stddev * (2 * pi) ** 0.5)) * (e ** (-0.5 * z ** 2))
