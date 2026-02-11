@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
 import numpy as np
-from numpy.ma.core import shape
 
 
 def intersection(x, n, P, Pr):
@@ -17,7 +16,7 @@ def intersection(x, n, P, Pr):
         raise ValueError("x cannot be greater than n")
     if not isinstance(P, np.ndarray):
         raise TypeError("P must be a 1D numpy.ndarray")
-    if not isinstance(Pr, np.ndarray) or shape(Pr) != shape(n):
+    if not isinstance(Pr, np.ndarray) or np.shape(Pr) != np.shape(n):
         raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
     if P.ndim != 1 or Pr.ndim != 1:
         raise TypeError("P must be a 1D numpy.ndarray")
