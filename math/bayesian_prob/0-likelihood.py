@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Documented"""
+from math import factorial
+
 import numpy as np
 
 
@@ -20,3 +22,6 @@ def likelihood(x, n, P):
         if i > 1 or i<0:
             raise ValueError("All values in P must be in the range [0, 1]")
 
+    fac = factorial(n) / (factorial(x) * factorial(n - x))
+    result = fac * (P ** x) * ((1 - P) ** (n - x))
+    return result
