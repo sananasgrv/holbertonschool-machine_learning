@@ -27,13 +27,14 @@ def intersection(x, n, P, Pr):
         if not (pr >= 0 and pr <= 1):
             raise ValueError("All values in Pr must be in the range [0, "
                              "1]")
-    if np.isclose(np.sum(Pr), 1):
+
+    if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
 
     num = np.math.factorial(n)
     den = np.math.factorial(x) * np.math.factorial(n - x)
 
     result = num / den * (P ** x) * ((1 - P) ** (n - x))
-
     inter = result * Pr
+
     return inter
