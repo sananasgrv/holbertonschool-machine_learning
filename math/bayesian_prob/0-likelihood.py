@@ -5,7 +5,7 @@ import numpy as np
 
 def likelihood(x, n, P):
     """Calculate the likelihood of a given probability distribution"""
-    if n <= 0 or not isinstance(n, int):
+    if not isinstance(n, int) or n <= 0 :
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
         raise ValueError("x must be an integer that is greater than or equal to 0")
