@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
-import numpy
+import numpy as np
 
 
 def likelihood(x, n, P):
@@ -11,7 +11,7 @@ def likelihood(x, n, P):
         raise ValueError("x must be an integer that is greater than or equal to 0")
     if x > n:
         raise ValueError("x cannot be greater than n")
-    if not  isinstance(x, numpy.ndarray) or P.ndim != 1:
+    if not  isinstance(x, np.ndarray) or P.ndim != 1:
         raise ValueError("P must be a 1D numpy.ndarray")
     for i in P:
         if i > 1 or i<0:
