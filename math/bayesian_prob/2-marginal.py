@@ -28,3 +28,12 @@ def marginal(x, n, P, Pr):
 
     if not np.isclose(np.sum(Pr), 1):
         raise ValueError("Pr must sum to 1")
+
+    num = np.math.factorial(n)
+    den = np.math.factorial(x) * np.math.factorial(n - x)
+
+    result = num / den * (P ** x) * ((1 - P) ** (n - x))
+    inter = result * Pr
+
+    marg = np.sum(inter)
+    return marg
