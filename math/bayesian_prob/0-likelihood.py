@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """Documented"""
-from math import prod
-
 import numpy as np
 
 
