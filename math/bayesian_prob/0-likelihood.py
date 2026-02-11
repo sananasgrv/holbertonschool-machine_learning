@@ -15,11 +15,11 @@ def likelihood(x, n, P):
         raise TypeError("P must be a 1D numpy.ndarray")
     if P.ndim != 1:
         raise TypeError("P must be a 1D numpy.ndarray")
+    if np.any(P < 0) or np.any(P > 1):
+        raise ValueError("All values in P must be in the range [0, 1]")
 
-    for i in P:
-        if i > 1 or i<0:
-            raise ValueError("All values in P must be in the range [0, 1]")
+    num = np.math.factorial(n)
+    den = np.math.factorial(x) * np.math.factorial(n - x)
 
-    fac = np.prod(np.arange(n - x + 1, n + 1)) / np.prod(np.arange(1, x + 1))
-    result = fac * (P ** x) * ((1 - P) ** (n - x))
+    result = num / den * (P ** x) * ((1 - P) ** (n - x))
     return result
