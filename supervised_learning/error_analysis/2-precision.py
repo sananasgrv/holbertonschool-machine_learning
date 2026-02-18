@@ -6,4 +6,6 @@ import numpy as np
 def precision(confusion):
     """Documented"""
     TP = np.diagonal(confusion)
-    FP = sum(confusion[: , len(confusion)])
+    for i in range(len(confusion)):
+        FP = sum(confusion[: , i])
+    return TP/(TP+FP)
