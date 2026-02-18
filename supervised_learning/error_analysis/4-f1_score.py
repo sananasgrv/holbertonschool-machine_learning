@@ -9,4 +9,5 @@ def f1_score(confusion):
     """Documented
     2 * prec * sens / prec + sens
     """
-    return 2 * precision(confusion) * sensitivity(confusion) / (precision(confusion) + sensitivity(confusion))
+    return (2 * precision(confusion) * sensitivity(confusion) /
+            (precision(confusion) + sensitivity(confusion)))
