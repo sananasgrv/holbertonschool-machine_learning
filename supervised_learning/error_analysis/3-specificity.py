@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
 import numpy as np
-from numpy.ma.core import diagonal
 
 
 def specificity(confusion):
