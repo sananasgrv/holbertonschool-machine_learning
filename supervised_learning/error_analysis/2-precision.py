@@ -4,7 +4,9 @@ import numpy as np
 
 
 def precision(confusion):
-    """Documented"""
+    """Documented
+    TP / TP + FP
+    """
     TP = np.diagonal(confusion)
     P = np.sum(confusion, axis=0)
     return TP/P
