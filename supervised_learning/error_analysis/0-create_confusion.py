@@ -12,6 +12,6 @@ def create_confusion_matrix(labels, logits):
     conf = np.zeros(shape=(classes, classes))
 
     for i in range(classes):
-        conf[true_classes[i], pred_classes[i]] =+1
+        conf[true_classes[i], pred_classes[i]] = true_classes[i]
 
     return conf
