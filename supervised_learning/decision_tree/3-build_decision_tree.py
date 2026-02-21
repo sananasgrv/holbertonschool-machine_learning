@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Documented"""
+import numpy as np
+
+
+class Node:
+    """Documented"""
+    def __init__(self, feature=None, threshold=None, left_child=None,
+                 right_child=None, is_root=False, depth=0):
+        self.feature = feature
+        self.threshold = threshold
+        self.left_child = left_child
+        self.right_child = right_child
+        self.is_leaf = False
+        self.is_root = is_root
+        self.depth = depth
+
+    def max_depth_below(self):
+        """Documented"""
+        left_depth = self.left_child.max_depth_below() if self.left_child else self.depth
+        right_depth = self.right_child.max_depth_below() if self.right_child else self.depth
+        return max(left_depth, right_depth)
+
+    def count_nodes_below(self, only_leaves=False):
+        """Documented"""
+        left_count = self.left_child.count_nodes_below(only_leaves) if self.left_child else 0
+        right_count = self.right_child.count_nodes_below(only_leaves) if self.right_child else 0
+        if only_leaves:
+            return left_count + right_count
+        return 1 + left_count + right_count
+
+    def left_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "    +--" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += "    |  " + x + "\n"  # Maintain indent for left children
+        return new_text
+
+    def right_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "    +--" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += "       " + x + "\n"  # Maintain indent for right children
+        return new_text
+
+    def __str__(self):
+        """Documented"""
+        if self.is_leaf:
+            return f"leaf [value={self.value}]"
+
+        head = f"root [feature={self.feature}, threshold={self.threshold}]" if self.is_root \
+               else f"node [feature={self.feature}, threshold={self.threshold}]"
+
+        result = head
+        if self.left_child:
+            result += "\n" + self.left_child_add_prefix(str(self.left_child))
+        if self.right_child:
+            result += "\n" + self.right_child_add_prefix(str(self.right_child))
+        return result
+
+
+class Leaf(Node):
+    """Documented"""
+    def __init__(self, value, depth=None):
+        super().__init__()
+        self.value = value
+        self.is_leaf = True
+        self.depth = depth
+
+    def max_depth_below(self):
+        """Documented"""
+        return self.depth
+
+    def count_nodes_below(self, only_leaves=False):
+        """Documented"""
+        return 1
+
+    def __str__(self):
+        return f"-> leaf [value={self.value}]"
+
+
+class Decision_Tree:
+    """Documented"""
+    def __init__(self, max_depth=10, min_pop=1,
+                 seed=0, split_criterion="random", root=None):
+        self.rng = np.random.default_rng(seed)
+        if root:
+            self.root = root
+        else:
+            self.root = Node(is_root=True)
+        self.explanatory = None
+        self.target = None
+        self.max_depth = max_depth
+        self.min_pop = min_pop
+        self.split_criterion = split_criterion
+        self.predict = None
+
+    def depth(self):
+        """Documented"""
+        return self.root.max_depth_below()
+
+    def count_nodes(self, only_leaves=False):
+        """Documented"""
+        return self.root.count_nodes_below(only_leaves=only_leaves)
+
+    def __str__(self):
+        """Documented"""
+        return self.root.__str__()
