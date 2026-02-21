@@ -45,18 +45,15 @@ class Node:
         return new_text
 
     def __str__(self):
-        """Documented"""
-        if self.is_leaf:
-            return f"leaf [value={self.value}]"
-
-        head = f"root [feature={self.feature}, threshold={self.threshold}]" if self.is_root \
-               else f"node [feature={self.feature}, threshold={self.threshold}]"
+        # Determine the label based on root status
+        label = "root" if self.is_root else "node"
+        head = f"{label} [feature={self.feature}, threshold={self.threshold}]"
 
         result = head
         if self.left_child:
-            result += "\n" + self.left_child_add_prefix(str(self.left_child))
+            result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip()
         if self.right_child:
-            result += "\n" + self.right_child_add_prefix(str(self.right_child))
+            result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip()
         return result
 
 
