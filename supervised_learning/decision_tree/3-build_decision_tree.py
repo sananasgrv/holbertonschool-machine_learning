@@ -64,6 +64,7 @@ class Node:
         return out
 
     def get_leaves_below(self):
+        """Documented"""
         leaves = []
         if self.left_child:
             leaves.extend(self.left_child.get_leaves_below())
