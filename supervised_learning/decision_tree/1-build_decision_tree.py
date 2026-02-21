@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Decision Tree implementation module."""
 import numpy as np
 
 
