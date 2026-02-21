@@ -32,17 +32,19 @@ class Node:
 
     def left_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +--" + lines[0] + "\n"
+        # First line gets the arrow, subsequent lines get the vertical bar
+        new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += "    |  " + x + "\n"  # Maintain indent for left children
-        return new_text
+            new_text += "    |      " + x + "\n"
+        return new_text.rstrip()
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +--" + lines[0] + "\n"
+        # First line gets the arrow, subsequent lines get empty padding
+        new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += "       " + x + "\n"  # Maintain indent for right children
-        return new_text
+            new_text += "           " + x + "\n"
+        return new_text.rstrip()
 
     def __str__(self):
         """Documented"""
