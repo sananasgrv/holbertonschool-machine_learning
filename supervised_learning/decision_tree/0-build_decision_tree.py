@@ -15,6 +15,7 @@ class Node:
         self.depth = depth
 
     def max_depth_below(self):
+        """Documented"""
         left_depth = self.left_child.max_depth_below()
         right_depth = self.right_child.max_depth_below()
         return max(left_depth, right_depth)
