@@ -31,26 +31,21 @@ class Node:
 
     def left_child_add_prefix(self, text):
         lines = text.split("\n")
-        # İlk satıra bağlantı prefixi eklenir (+--)
-        new_text = "    +--" + lines[0] + "\n"
-        # Alt satırlara dikey bağlantı çizgisi (|) eklenir
+        new_text = "    +-->" + lines[0] + "\n"
         for x in lines[1:]:
-            if x:  # Boş satır değilse ekle
+            if x:
                 new_text += ("    |  " + x) + "\n"
         return new_text
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
-        # Sağ çocuk için başlangıç prefixi
-        new_text = "    +--" + lines[0] + "\n"
-        # Sağ taraf en dış dal olduğu için alt satırlarda dikey çizgi olmaz
+        new_text = "    +-->" + lines[0] + "\n"
         for x in lines[1:]:
-            if x:  # Boş satır değilse ekle
+            if x:
                 new_text += ("       " + x) + "\n"
         return new_text
 
     def __str__(self):
-        # Başlık belirleme
         if self.is_root:
             head = f"root [feature={self.feature}, threshold={self.threshold}]"
         else:
@@ -58,7 +53,6 @@ class Node:
 
         result = head
         if self.left_child:
-            # rstrip() ile her blok sonunda oluşan fazladan \n karakterini temizliyoruz
             result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip('\n')
         if self.right_child:
             result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip('\n')
