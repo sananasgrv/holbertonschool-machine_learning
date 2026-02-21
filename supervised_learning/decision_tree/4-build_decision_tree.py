@@ -78,8 +78,16 @@ class Node:
             self.lower = {0 : -1*np.inf }
 
         for child in [self.left_child, self.right_child] :
+            child.upper = self.upper.copy()
+            child.lower = self.lower.copy()
 
-                         # To Fill : compute and attach the lower and upper dictionaries to the children
+            f = self.feature
+            t = self.threshold
+
+            if child == self.left_child:
+                child.upper[f] = t
+            else:
+                child.lower[f] = t
 
         for child in [self.left_child, self.right_child] :
             child.update_bounds_below()
@@ -152,4 +160,3 @@ class Decision_Tree():
     def update_bounds(self) :
         """Documented   """
         self.root.update_bounds_below()
-
