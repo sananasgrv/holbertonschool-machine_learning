@@ -34,6 +34,20 @@ class Node:
 
         return 1 + left_count + right_count
 
+    def left_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "    +--" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += ("    |  " + x) + "\n"
+        return (new_text)
+
+    def right_child_add_prefix(self, text):
+        lines = text.split("\n")
+        new_text = "    --+" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += ("       " + x) + "\n"
+        return (new_text)
+
 
 class Leaf(Node):
     """Documented"""
@@ -50,6 +64,9 @@ class Leaf(Node):
     def count_nodes_below(self, only_leaves=False):
         """Documented"""
         return 1
+
+    def __str__(self):
+        return (f"-> leaf [value={self.value}]")
 
 
 class Decision_Tree():
@@ -75,3 +92,6 @@ class Decision_Tree():
     def count_nodes(self, only_leaves=False):
         """Documented"""
         return self.root.count_nodes_below(only_leaves=only_leaves)
+
+    def __str__(self):
+        return self.root.__str__()
