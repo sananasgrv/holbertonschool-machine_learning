@@ -45,22 +45,25 @@ class Node:
         lines = text.split("\n")
         new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += ("    |  " + x) + "\n"
+            new_text += "       " + x + "\n"
         return (new_text)
 
     def __str__(self):
         """Documented"""
-        if self.is_root:
-            head = f"root [feature={self.feature}, threshold={self.threshold}]"
+        if self.is_leaf:
+            return f"leaf [value={self.value}]"
 
-        text = f"node [feature={self.feature}, threshold={self.threshold}]"
+        head = f"root [feature={self.feature}, threshold={self.threshold}]" if self.is_root() \
+            else f"node[fearure={self.feature}, threshold={self.threshold}"
 
-        if self.left_child is None and self.right_child is None:
-            return head
+        result = head
 
-        left_txt = self.left_child_add_prefix(str(self.left_child))
-        right_txt = self.right_child_add_prefix(str(self.right_child))
-        return head + "\n" + left_txt + "\n" + right_txt
+        if self.left_child:
+            result += "\n" + self.left_child_add_prefix(str(self.left_child))
+        if self.right_child:
+            result += "\n" + self.right_child_add_prefix(str(self.right_child))
+        return result
+
 
 class Leaf(Node):
     """Documented"""
