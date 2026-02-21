@@ -49,8 +49,8 @@ class Node:
         else:
             text = f"node [feature={self.feature}, threshold={self.threshold}]\n"
 
-        text += self.left_child_add_prefix(str(self.left_child)) if self.left_child else 0
-        text += self.right_child_add_prefix(str(self.right_child)) if self.right_child else 0
+        text += self.left_child_add_prefix(str(self.left_child)).rsplit("\n") if self.left_child else 0
+        text += self.right_child_add_prefix(str(self.right_child)).rsplit("\n") if self.right_child else 0
 
         return text
 
