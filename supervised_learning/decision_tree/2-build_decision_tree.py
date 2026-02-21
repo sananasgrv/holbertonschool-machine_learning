@@ -29,6 +29,16 @@ class Node:
             return left_count + right_count
         return 1 + left_count + right_count
 
+    def left_child_add_prefix(self, text):
+        lines = text.split("\n")
+        # İlk satıra bağlantı prefixi eklenir (+--)
+        new_text = "    +--" + lines[0] + "\n"
+        # Alt satırlara dikey bağlantı çizgisi (|) eklenir
+        for x in lines[1:]:
+            if x:  # Boş satır değilse ekle
+                new_text += ("    |  " + x) + "\n"
+        return new_text
+
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
         # Sağ çocuk için başlangıç prefixi
@@ -53,7 +63,6 @@ class Node:
         if self.right_child:
             result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip('\n')
         return result
-
 
 class Leaf(Node):
     """Documented"""
