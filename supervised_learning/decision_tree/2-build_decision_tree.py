@@ -51,9 +51,9 @@ class Node:
 
         result = head
         if self.left_child:
-            result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip('\n')
+            result += "\n" + self.left_child_add_prefix(str(self.left_child).lstrip()).rstrip('\n')
         if self.right_child:
-            result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip('\n')
+            result += "\n" + self.right_child_add_prefix(str(self.right_child).lstrip()).rstrip('\n')
         return result
 
 class Leaf(Node):
