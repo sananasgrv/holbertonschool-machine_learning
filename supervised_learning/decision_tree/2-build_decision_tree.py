@@ -29,33 +29,29 @@ class Node:
             return left_count + right_count
         return 1 + left_count + right_count
 
-    def left_child_add_prefix(self, text):
-        lines = text.split("\n")
-        new_text = "    +--" + lines[0] + "\n"
-        for x in lines[1:]:
-            new_text += ("    |  " + x) + "\n"
-        return new_text
-
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
+        # Sağ çocuk için başlangıç prefixi
         new_text = "    +--" + lines[0] + "\n"
+        # Sağ taraf en dış dal olduğu için alt satırlarda dikey çizgi olmaz
         for x in lines[1:]:
-            new_text += "       " + x + "\n"
+            if x:  # Boş satır değilse ekle
+                new_text += ("       " + x) + "\n"
         return new_text
 
     def __str__(self):
-        """Documented"""
-        if self.is_leaf:
-            return f"leaf [value={self.value}]"
-
-        head = f"root [feature={self.feature}, threshold={self.threshold}]" if self.is_root \
-               else f"node [feature={self.feature}, threshold={self.threshold}]"
+        # Başlık belirleme
+        if self.is_root:
+            head = f"root [feature={self.feature}, threshold={self.threshold}]"
+        else:
+            head = f"node [feature={self.feature}, threshold={self.threshold}]"
 
         result = head
         if self.left_child:
-            result += "\n" + self.left_child_add_prefix(str(self.left_child))
+            # rstrip() ile her blok sonunda oluşan fazladan \n karakterini temizliyoruz
+            result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip('\n')
         if self.right_child:
-            result += "\n" + self.right_child_add_prefix(str(self.right_child))
+            result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip('\n')
         return result
 
 
