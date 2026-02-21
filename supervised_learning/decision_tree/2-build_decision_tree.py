@@ -105,4 +105,4 @@ class Decision_Tree:
 
     def __str__(self):
         """Documented"""
-        return str(self.root)
+        return self.root.__str__()
