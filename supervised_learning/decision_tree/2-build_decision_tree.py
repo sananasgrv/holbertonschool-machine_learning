@@ -32,11 +32,12 @@ class Node:
     def left_child_add_prefix(self, text):
         """Documented"""
         lines = text.split("\n")
+        # 4 boşluq + +---> + bir boşluq = budaq başlanğıcı
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
             if x.strip():
-                # Burada tam olaraq 6 boşluq var ( | + 5 boşluq)
-                new_text += "    |      " + x + "\n"
+                # Dikey xətt (|) 5-ci pozisiyada, sonra 2 boşluq gəlir
+                new_text += "    |  " + x + "\n"
         return new_text
 
     def right_child_add_prefix(self, text):
@@ -45,8 +46,8 @@ class Node:
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
             if x.strip():
-                # Burada tam olaraq 11 boşluq var
-                new_text += "           " + x + "\n"
+                # Sağ budaqda dikey xətt yoxdur, 7 boşluq buraxılır
+                new_text += "       " + x + "\n"
         return new_text
 
     def __str__(self):
@@ -58,7 +59,7 @@ class Node:
 
         result = head
         if self.left_child:
-            # lstrip() leaf-in öz str metodundan gələ biləcək boşluğu təmizləyir
+            # Uşaq düyümün əvvəlindəki boşluqları təmizləyirik ki, prefix tam otursun
             result += "\n" + self.left_child_add_prefix(str(self.left_child).lstrip()).rstrip('\n')
         if self.right_child:
             result += "\n" + self.right_child_add_prefix(str(self.right_child).lstrip()).rstrip('\n')
