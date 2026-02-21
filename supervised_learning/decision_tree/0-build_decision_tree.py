@@ -67,4 +67,3 @@ class Decision_Tree():
 
     def count_nodes(self, only_leaves=False):
         return self.root.count_nodes_below(only_leaves=only_leaves)
-
