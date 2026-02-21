@@ -100,7 +100,6 @@ class Leaf(Node):
         return [self]
 
 
-
 class Decision_Tree():
     """Documented"""
 
