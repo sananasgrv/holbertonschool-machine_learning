@@ -64,6 +64,7 @@ class Node:
         return out
 
     def get_leaves_below(self):
+        """Documented"""
         leaves = []
         if self.left_child:
             leaves.extend(self.left_child.get_leaves_below())
@@ -163,5 +164,5 @@ class Decision_Tree():
         return self.root.get_leaves_below()
 
     def update_bounds(self):
-        """Documented   """
+        """Documented"""
         self.root.update_bounds_below()
