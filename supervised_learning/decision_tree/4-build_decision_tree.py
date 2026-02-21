@@ -72,11 +72,11 @@ class Node:
 
         return leaves
 
-    def update_bounds_below(self) :
+    def update_bounds_below(self):
         """Documented"""
         if self.is_root:
-            self.upper = {0:np.inf}
-            self.lower = {0:-1*np.inf}
+            self.upper = {0: np.inf}
+            self.lower = {0: -1*np.inf}
 
         for child in [self.left_child, self.right_child]:
             if child is None:
@@ -95,6 +95,7 @@ class Node:
 
         for child in [self.left_child, self.right_child]:
             child.update_bounds_below()
+
 
 class Leaf(Node):
     """Documented"""
@@ -122,7 +123,7 @@ class Leaf(Node):
         """Documented"""
         return [self]
 
-    def update_bounds_below(self) :
+    def update_bounds_below(self):
         """Documented"""
         pass
 
@@ -161,6 +162,6 @@ class Decision_Tree():
         """Documented"""
         return self.root.get_leaves_below()
 
-    def update_bounds(self) :
+    def update_bounds(self):
         """Documented   """
         self.root.update_bounds_below()
