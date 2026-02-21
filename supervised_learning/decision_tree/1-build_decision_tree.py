@@ -43,11 +43,24 @@ class Node:
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    --+" + lines[0] + "\n"
+        new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
             new_text += ("    |  " + x) + "\n"
         return (new_text)
 
+    def __str__(self):
+        """Documented"""
+        if self.is_root:
+            head = f"root [feature={self.feature}, threshold={self.threshold}]"
+
+        text = f"node [feature={self.feature}, threshold={self.threshold}]"
+
+        if self.left_child is None and self.right_child is None:
+            return head
+
+        left_txt = self.left_child_add_prefix(str(self.left_child))
+        right_txt = self.right_child_add_prefix(str(self.right_child))
+        return head + "\n" + left_txt + "\n" + right_txt
 
 class Leaf(Node):
     """Documented"""
