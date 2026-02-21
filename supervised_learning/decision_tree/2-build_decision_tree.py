@@ -31,18 +31,16 @@ class Node:
 
     def left_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +--->" + lines[0] + "\n"
+        new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
-            if x:
-                new_text += ("    |  " + x) + "\n"
-        return new_text
+            new_text += ("    |  " + x) + "\n"
+        return (new_text)
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +--->" + lines[0] + "\n"
+        new_text = "    +--" + lines[0] + "\n"
         for x in lines[1:]:
-            if x:
-                new_text += ("       " + x) + "\n"
+            new_text += "       " + x + "\n"
         return new_text
 
     def __str__(self):
@@ -75,7 +73,7 @@ class Leaf(Node):
         return 1
 
     def __str__(self):
-        return f"leaf [value={self.value}]"
+        return f"->leaf [value={self.value}]"
 
 
 class Decision_Tree:
