@@ -35,9 +35,8 @@ class Node:
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
             if x.strip():
+                # Burada tam olaraq 6 boşluq var ( | + 5 boşluq)
                 new_text += "    |      " + x + "\n"
-            else:
-                new_text += "    |  \n"
         return new_text
 
     def right_child_add_prefix(self, text):
@@ -46,9 +45,8 @@ class Node:
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
             if x.strip():
+                # Burada tam olaraq 11 boşluq var
                 new_text += "           " + x + "\n"
-            else:
-                new_text += " \n"
         return new_text
 
     def __str__(self):
@@ -60,6 +58,7 @@ class Node:
 
         result = head
         if self.left_child:
+            # lstrip() leaf-in öz str metodundan gələ biləcək boşluğu təmizləyir
             result += "\n" + self.left_child_add_prefix(str(self.left_child).lstrip()).rstrip('\n')
         if self.right_child:
             result += "\n" + self.right_child_add_prefix(str(self.right_child).lstrip()).rstrip('\n')
