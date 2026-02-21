@@ -21,6 +21,16 @@ class Node:
         right_depth = self.right_child.max_depth_below()
         return max(left_depth, right_depth)
 
+def count_nodes_below(self, only_leaves=False):
+    """Documented"""
+    left_count = self.left_child.count_nodes_below(only_leaves) if self.left_child else 0
+    right_count = self.right_child.count_nodes_below(only_leaves) if self.right_child else 0
+
+    if only_leaves:
+        return left_count + right_count
+    else:
+        return 1 + left_count + right_count
+
 
 class Leaf(Node):
     """Documented"""
@@ -33,6 +43,8 @@ class Leaf(Node):
     def max_depth_below(self):
         return self.depth
 
+    def count_nodes_below(self, only_leaves=False):
+        return 1
 
 class Decision_Tree():
     """Documented"""
@@ -52,3 +64,7 @@ class Decision_Tree():
 
     def depth(self):
         return self.root.max_depth_below()
+
+    def count_nodes(self, only_leaves=False):
+        return self.root.count_nodes_below(only_leaves=only_leaves)
+
