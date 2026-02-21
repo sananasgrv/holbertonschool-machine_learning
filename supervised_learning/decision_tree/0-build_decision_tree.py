@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
 import numpy as np
-from PyQt6.QtCore.QByteArray import left
 
 
 class Node:
