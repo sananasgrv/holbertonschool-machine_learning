@@ -30,20 +30,29 @@ class Node:
         return 1 + left_count + right_count
 
     def left_child_add_prefix(self, text):
+        """Documented"""
         lines = text.split("\n")
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += ("    |  " + x) + "\n"
-        return (new_text)
+            if x.strip():
+                new_text += "    |      " + x + "\n"
+            else:
+                new_text += "    |  \n"
+        return new_text
 
     def right_child_add_prefix(self, text):
+        """Documented"""
         lines = text.split("\n")
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += "       " + x + "\n"
+            if x.strip():
+                new_text += "           " + x + "\n"
+            else:
+                new_text += " \n"
         return new_text
 
     def __str__(self):
+        """Documented"""
         if self.is_root:
             head = f"root [feature={self.feature}, threshold={self.threshold}]"
         else:
@@ -55,6 +64,7 @@ class Node:
         if self.right_child:
             result += "\n" + self.right_child_add_prefix(str(self.right_child).lstrip()).rstrip('\n')
         return result
+
 
 class Leaf(Node):
     """Documented"""
@@ -73,6 +83,7 @@ class Leaf(Node):
         return 1
 
     def __str__(self):
+        """Documented"""
         return f"leaf [value={self.value}]"
 
 
@@ -90,7 +101,6 @@ class Decision_Tree:
         self.max_depth = max_depth
         self.min_pop = min_pop
         self.split_criterion = split_criterion
-        self.predict = None
 
     def depth(self):
         """Documented"""
