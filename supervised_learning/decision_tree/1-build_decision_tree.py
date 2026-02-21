@@ -69,6 +69,7 @@ class Decision_Tree():
         self.predict = None
 
     def depth(self):
+        """Documented"""
         return self.root.max_depth_below()
 
     def count_nodes(self, only_leaves=False):
