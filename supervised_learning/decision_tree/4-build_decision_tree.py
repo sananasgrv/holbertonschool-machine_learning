@@ -73,11 +73,15 @@ class Node:
         return leaves
 
     def update_bounds_below(self) :
-        if self.is_root :
-            self.upper = { 0:np.inf }
-            self.lower = {0 : -1*np.inf }
+        """Documented"""
+        if self.is_root:
+            self.upper = {0:np.inf}
+            self.lower = {0:-1*np.inf}
 
-        for child in [self.left_child, self.right_child] :
+        for child in [self.left_child, self.right_child]:
+            if child is None:
+                continue
+
             child.upper = self.upper.copy()
             child.lower = self.lower.copy()
 
@@ -85,11 +89,11 @@ class Node:
             t = self.threshold
 
             if child == self.left_child:
-                child.upper[f] = t
-            else:
                 child.lower[f] = t
+            else:
+                child.upper[f] = t
 
-        for child in [self.left_child, self.right_child] :
+        for child in [self.left_child, self.right_child]:
             child.update_bounds_below()
 
 class Leaf(Node):
