@@ -47,6 +47,7 @@ class Leaf(Node):
         return self.depth
 
     def count_nodes_below(self, only_leaves=False):
+        """Documented"""
         return 1
 
 
