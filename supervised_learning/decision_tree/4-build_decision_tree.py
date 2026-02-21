@@ -72,6 +72,17 @@ class Node:
 
         return leaves
 
+    def update_bounds_below(self) :
+        if self.is_root :
+            self.upper = { 0:np.inf }
+            self.lower = {0 : -1*np.inf }
+
+        for child in [self.left_child, self.right_child] :
+
+                         # To Fill : compute and attach the lower and upper dictionaries to the children
+
+        for child in [self.left_child, self.right_child] :
+            child.update_bounds_below()
 
 class Leaf(Node):
     """Documented"""
@@ -99,6 +110,9 @@ class Leaf(Node):
         """Documented"""
         return [self]
 
+    def update_bounds_below(self) :
+        """Documented"""
+        pass
 
 
 class Decision_Tree():
@@ -134,3 +148,8 @@ class Decision_Tree():
     def get_leaves(self):
         """Documented"""
         return self.root.get_leaves_below()
+
+    def update_bounds(self) :
+        """Documented   """
+        self.root.update_bounds_below()
+
