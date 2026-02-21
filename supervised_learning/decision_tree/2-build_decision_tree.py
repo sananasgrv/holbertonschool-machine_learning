@@ -30,41 +30,29 @@ class Node:
         return 1 + left_count + right_count
 
     def left_child_add_prefix(self, text):
-        """Documented"""
         lines = text.split("\n")
-        # 4 boşluq + +---> + bir boşluq = budaq başlanğıcı
-        new_text = "    +---> " + lines[0] + "\n"
+        new_text = "    +--->" + lines[0] + "\n"
         for x in lines[1:]:
-            if x.strip():
-                # Dikey xətt (|) 5-ci pozisiyada, sonra 2 boşluq gəlir
-                new_text += "    |  " + x + "\n"
-        return new_text
+            new_text += ("    |  " + x) + "\n"
+        return (new_text)
 
     def right_child_add_prefix(self, text):
-        """Documented"""
         lines = text.split("\n")
-        new_text = "    +---> " + lines[0] + "\n"
+        new_text = "    +--->" + lines[0] + "\n"
         for x in lines[1:]:
-            if x.strip():
-                # Sağ budaqda dikey xətt yoxdur, 7 boşluq buraxılır
-                new_text += "       " + x + "\n"
-        return new_text
+            new_text += ("       " + x) + "\n"
+        return (new_text)
 
     def __str__(self):
-        """Documented"""
         if self.is_root:
-            head = f"root [feature={self.feature}, threshold={self.threshold}]"
+            text = f"root [feature={self.feature}, threshold={self.threshold}]\n"
         else:
-            head = f"node [feature={self.feature}, threshold={self.threshold}]"
+            text = f"node [feature={self.feature}, threshold={self.threshold}]\n"
 
-        result = head
-        if self.left_child:
-            # Uşaq düyümün əvvəlindəki boşluqları təmizləyirik ki, prefix tam otursun
-            result += "\n" + self.left_child_add_prefix(str(self.left_child).lstrip()).rstrip('\n')
-        if self.right_child:
-            result += "\n" + self.right_child_add_prefix(str(self.right_child).lstrip()).rstrip('\n')
-        return result
+        text += self.left_child_add_prefix(self.left_child) if self.left_child else 0
+        text += self.right_child_add_prefix(self.right_child) if self.right_child else 0
 
+        return text
 
 class Leaf(Node):
     """Documented"""
