@@ -32,28 +32,29 @@ class Node:
 
     def left_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +---> " + lines[0] + "\n"
+        new_text = "    +" + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += "    |      " + x + "\n"
+            new_text += ("    |  " + x) + "\n"
         return new_text
 
     def right_child_add_prefix(self, text):
         lines = text.split("\n")
-        new_text = "    +---> " + lines[0] + "\n"
+        new_text = "    +" + lines[0] + "\n"
         for x in lines[1:]:
-            new_text += "           " + x + "\n"
+            new_text += "       " + x + "\n"
         return new_text
 
     def __str__(self):
-        # Determine the label based on root status
-        label = "root" if self.is_root else "node"
-        head = f"{label} [feature={self.feature}, threshold={self.threshold}]"
+        if self.is_root:
+            head = f"root [feature={self.feature}, threshold={self.threshold}]"
+        else:
+            head = f"node [feature={self.feature}, threshold={self.threshold}]"
 
         result = head
         if self.left_child:
-            result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip()
+            result += "\n" + self.left_child_add_prefix(str(self.left_child)).rstrip('\n')
         if self.right_child:
-            result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip()
+            result += "\n" + self.right_child_add_prefix(str(self.right_child)).rstrip('\n')
         return result
 
 
