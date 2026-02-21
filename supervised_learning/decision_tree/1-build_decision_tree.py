@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-2-build_decision_tree.py
-Build and print a decision tree (string representation).
+documented
 """
 
 
