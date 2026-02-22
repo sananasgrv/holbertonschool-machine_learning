@@ -104,16 +104,18 @@ class Node:
             """Documented"""
             if not self.upper:
                 return np.ones(x.shape[0], dtype=bool)
-            return np.all(np.array([x[:, key] >= self.lower[key] for key in self.lower.keys()]), axis=0)
+            return np.all(np.array([x[:, key] >= self.lower[key]
+                                    for key in self.lower.keys()]), axis=0)
 
         def is_small_enough(x):
             """Documented"""
             if not self.upper:
                 return np.ones(x.shape[0], dtype=bool)
-            return np.all(np.array([x[:, key] <= self.upper[key]for key in self.upper.keys()]), axis=0)
+            return np.all(np.array([x[:, key] <= self.upper[key]
+                                    for key in self.upper.keys()]), axis=0)
 
-
-        self.indicator = lambda x: np.all(np.array([is_large_enough(x), is_small_enough(x)]), axis=0)
+        self.indicator = lambda x: np.all(np.array
+                                          ([is_large_enough(x), is_small_enough(x)]), axis=0)
 
 
 class Leaf(Node):
