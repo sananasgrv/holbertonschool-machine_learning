@@ -48,6 +48,7 @@ class Leaf(Node):
     def count_nodes_below(self, only_leaves=False):
         return 1
 
+
 class Decision_Tree():
     """Documented"""
     def __init__(self, max_depth=10, min_pop=1,
