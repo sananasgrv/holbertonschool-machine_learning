@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
 """
-Decision Tree and Random Forest implementation
-with Node and Leaf classes.
+Documented
 """
-from pyexpat import features
-
 import numpy as np
 
 
 class Node:
-    """A node class that generalizes everything including root and leaves."""
+    """Documented"""
 
     def __init__(self, feature=None, threshold=None, left_child=None,
                  right_child=None, is_root=False, depth=0):
-        """Construct the Node object."""
+        """Documented"""
         self.feature = feature
         self.threshold = threshold
         self.left_child = left_child
@@ -24,7 +21,7 @@ class Node:
         self.depth = depth
 
     def max_depth_below(self):
-        """Find the maximum depth."""
+        """Documented"""
         if self.is_leaf:
             return self.depth
         left = self.left_child.max_depth_below()\
@@ -34,7 +31,7 @@ class Node:
         return max(left, right)
 
     def count_nodes_below(self, only_leaves=False):
-        """Count the number of nodes below, only leaves if specified."""
+        """Documented"""
         if self.is_leaf:
             return 1
 
@@ -52,7 +49,7 @@ class Node:
             return 1 + left + right
 
     def __str__(self):
-        """STR"""
+        """Documented"""
         if self.is_root:
             s = f"root [feature={self.feature}, threshold={self.threshold}]"
         else:
@@ -69,7 +66,7 @@ class Node:
         return s
 
     def left_child_add_prefix(self, text):
-        """Left Child"""
+        """Documented"""
         lines = text.split("\n")
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
@@ -77,7 +74,7 @@ class Node:
         return new_text
 
     def right_child_add_prefix(self, text):
-        """Right Child"""
+        """Documented"""
         lines = text.split("\n")
         new_text = "    +---> " + lines[0] + "\n"
         for x in lines[1:]:
@@ -85,7 +82,7 @@ class Node:
         return new_text
 
     def get_leaves_below(self):
-        """Get Leaves"""
+        """Documented"""
         if self.is_leaf:
             return [self]
         leaves = []
@@ -96,7 +93,7 @@ class Node:
         return leaves
 
     def update_bounds_below(self):
-        """Update Bounds"""
+        """Documented"""
         if self.is_root:
             self.lower = {0: -np.inf}
             self.upper = {0: np.inf}
@@ -121,17 +118,17 @@ class Node:
                 child.update_bounds_below()
 
     def update_indicator(self):
-        """Update Indicator"""
+        """Documented"""
 
         def is_large_enough(x):
-            """Large enough"""
+            """Documented"""
             return np.all(
                 [x[:, j] >= bound for j, bound in self.lower.items()],
                 axis=0
             )
 
         def is_small_enough(x):
-            """Small Enough"""
+            """Documented"""
             return np.all(
                 [x[:, j] <= bound for j, bound in self.upper.items()],
                 axis=0
@@ -144,42 +141,42 @@ class Node:
 
 
 class Leaf(Node):
-    """Terminal node which is a leaf."""
+    """Documented"""
 
     def __init__(self, value, depth=None):
-        """Construct the leaf object."""
+        """Documented"""
         super().__init__()
         self.value = value
         self.is_leaf = True
         self.depth = depth
 
     def max_depth_below(self):
-        """Retur the depth of the leaf."""
+        """Documented"""
         return self.depth
 
     def count_nodes_below(self, only_leaves=False):
-        """Return the count of 1 leaf."""
+        """Documented"""
         return 1
 
     def __str__(self):
-        """STR"""
+        """Documented"""
         return f"-> leaf [value={self.value}]"
 
     def get_leaves_below(self):
-        """Get Leaves"""
+        """Documented"""
         return [self]
 
     def update_bounds_below(self):
-        """Update Bounds"""
+        """Documented"""
         pass
 
 
 class Decision_Tree():
-    """The whole Decision Tree class."""
+    """Documented"""
 
     def __init__(self, max_depth=10, min_pop=1, seed=0,
                  split_criterion="random", root=None):
-        """Construct the decision tree."""
+        """Documented"""
         self.rng = np.random.default_rng(seed)
         if root:
             self.root = root
@@ -193,21 +190,21 @@ class Decision_Tree():
         self.predict = None
 
     def depth(self):
-        """Return the maximum depth of tree."""
+        """Documented"""
         return self.root.max_depth_below()
 
     def count_nodes(self, only_leaves=False):
-        """Return the count of leaves."""
+        """Documented"""
         return self.root.count_nodes_below(only_leaves=only_leaves)
 
     def get_leaves(self):
-        """Get Leaves"""
+        """Documented"""
         return self.root.get_leaves_below()
 
     def __str__(self):
-        """STR"""
+        """Documented"""
         return self.root.__str__() + "\n"
 
     def update_bounds(self):
-        """Update Bounds"""
+        """Documented"""
         self.root.update_bounds_below()
