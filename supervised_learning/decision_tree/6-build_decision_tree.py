@@ -176,9 +176,8 @@ class Leaf(Node):
         """Documented"""
         pass
 
-    def pred(self,x) :
+    def pred(self, x):
         return self.value
-
 
 
 class Decision_Tree():
@@ -219,10 +218,12 @@ class Decision_Tree():
         """Documented"""
         self.root.update_bounds_below()
 
-    def pred(self,x) :
-            return self.root.pred(x)
+    def pred(self, x):
+        """Documented"""
+        return self.root.pred(x)
 
     def update_predict(self):
+        """Documented"""
         self.update_bounds()
         leaves = self.get_leaves()
         for leaf in leaves:
