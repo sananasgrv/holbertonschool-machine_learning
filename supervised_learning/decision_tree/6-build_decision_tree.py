@@ -177,6 +177,7 @@ class Leaf(Node):
         pass
 
     def pred(self, x):
+        """Documented"""
         return self.value
 
 
