@@ -15,14 +15,17 @@ class Neuron:
         self.__b = 0
         self.__A = 0
 
+    @property
     def W(self):
         """Documented"""
         return self.__W
 
+    @property
     def b(self):
         """Documented"""
         return self.__b
 
+    @property
     def A(self):
         """Documented"""
         return self.__A
