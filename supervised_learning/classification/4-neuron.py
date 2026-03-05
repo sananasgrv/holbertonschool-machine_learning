@@ -40,3 +40,10 @@ class Neuron:
         """Documented"""
         result = -np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) / Y.shape[1]
         return result
+
+    def evaluate(self, X, Y):
+        """Documented"""
+        A = self.forward_prop(X)
+        predict = np.where(A[0] >= 0.5, 1, 0).astype(int)
+        cost = self.cost(Y, A)
+        return predict, A
