@@ -44,6 +44,6 @@ class Neuron:
     def evaluate(self, X, Y):
         """Documented"""
         A = self.forward_prop(X)
-        predict = np.where(A[0] >= 0.5, 1, 0).astype(int)
+        predict = np.where(A >= 0.5, 1, 0).astype(int)
         cost = self.cost(Y, A)
         return predict, cost
