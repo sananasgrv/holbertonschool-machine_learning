@@ -65,12 +65,12 @@ class Neuron:
         if iterations <= 0:
             raise ValueError("iterations must be a positive integer")
         if not isinstance(alpha, float):
-            raise TypeError("alpha must be an float")
+            raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
 
         for i in range(iterations):
-            self.forward_prop(X)
-            self.gradient_descent(X, Y, alpha)
+            A = self.forward_prop(X)
+            self.gradient_descent(X, Y, A, alpha)
 
         return self.evaluate(X, Y)
