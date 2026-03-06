@@ -41,3 +41,6 @@ class Neuron:
         result = -np.sum(Y * np.log(A) + (1 - Y)
                          * np.log(1.0000001 - A)) / Y.shape[1]
         return result
+
+    def evaluate(self, X, Y):
+        """Documented"""
