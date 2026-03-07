@@ -104,9 +104,9 @@ class DeepNeuralNetwork:
             self.__weights[W_key] -= alpha * dw
             self.__weights[b_key] -= alpha * db
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
-        """Documented
-        """
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True,
+              graph=True, step=100):
+        """Documented"""
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
         if iterations <= 0:
@@ -117,8 +117,36 @@ class DeepNeuralNetwork:
         if alpha <= 0:
             raise ValueError("alpha must be positive")
 
-        for i in range(iterations):
-            A, cache = self.forward_prop(X)
-            self.gradient_descent(Y, cache, alpha)
+        if verbose or graph:
+            if not isinstance(step, int):
+                raise TypeError("step must be an integer")
+            if step <= 0 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
+
+        costs = []
+        steps = []
+
+        for i in range(iterations + 1):
+            # Forward propagation hər dövrdə daxili __cache-i yeniləyir
+            A_out, _ = self.forward_prop(X)
+
+            if i % step == 0 or i == iterations:
+                current_cost = self.cost(Y, A_out)
+                if verbose:
+                    print(f"Cost after {i} iterations: {current_cost}")
+                if graph:
+                    costs.append(current_cost)
+                    steps.append(i)
+
+            if i < iterations:
+                self.gradient_descent(Y, self.cache, alpha)
+
+        if graph:
+            import matplotlib.pyplot as plt
+            plt.plot(steps, costs, 'b-')
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
+            plt.title('Training Cost')
+            plt.show()
 
         return self.evaluate(X, Y)
