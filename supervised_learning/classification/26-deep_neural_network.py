@@ -12,8 +12,6 @@ def save(self, filename):
     with open(filename, 'wb') as f:
         pickle.dump(self, f)
 
-
-@staticmethod
 def load(filename):
     """Fayldan pickle formatlı DeepNeuralNetwork obyektini yükləyir."""
     if not os.path.exists(filename):
