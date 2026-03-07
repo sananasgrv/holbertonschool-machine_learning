@@ -5,17 +5,19 @@ import os
 
 
 def save(self, filename):
-    """Obyekti pickle formatında fayla yadda saxlayır."""
-    if not filename.endswith('.pkl'):
-        filename += '.pkl'
+    """saves the instance object to a file"""
+    if not filename.endswith(".pkl"):
+        filename += ".pkl"
 
-    with open(filename, 'wb') as f:
+    with open(filename, "wb") as f:
         pickle.dump(self, f)
 
+
+@staticmethod
 def load(filename):
-    """Fayldan pickle formatlı DeepNeuralNetwork obyektini yükləyir."""
+    """loads a pickled object"""
     if not os.path.exists(filename):
         return None
 
-    with open(filename, 'rb') as f:
+    with open(filename, "rb") as f:
         return pickle.load(f)
