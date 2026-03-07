@@ -59,7 +59,7 @@ class NeuralNetwork:
 
     def forward_prop(self, X):
         """Documented"""
-        Z1 = np.dot(X, self.__W1) + self.__b1
+        Z1 = np.dot(self.__W1, X) + self.__b1
         self.__A1 = 1 / (1 + np.exp(-Z1))
 
         Z2 = np.dot(self.__A1, self.__W2) + self.__b2
