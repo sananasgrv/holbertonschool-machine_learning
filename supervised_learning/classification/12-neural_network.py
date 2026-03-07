@@ -75,8 +75,7 @@ class NeuralNetwork:
 
     def evaluate(self, X, Y):
         """Documented"""
-        _,A2 = self.forward_prop(X)
+        _, A2 = self.forward_prop(X)
         cost = self.cost(Y, A2)
         predict = np.where(A2 >= 0.5, 1, 0).astype(int)
         return predict, cost
-
