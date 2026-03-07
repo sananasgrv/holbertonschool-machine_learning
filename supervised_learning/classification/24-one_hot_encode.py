@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Doc"""
+"""Documented"""
 import numpy as np
 
 
 def one_hot_encode(Y, classes):
-    """Doc"""
+    """Documented"""
 
     if (not isinstance(Y, np.ndarray) or
             not isinstance(classes, int) or
