@@ -70,5 +70,5 @@ class NeuralNetwork:
     def cost(self, Y, A):
         """Documented"""
         loss = Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)
-        cost = np.sum(loss) / Y.shape[0]
+        cost = -np.sum(loss) / Y.shape[1]
         return cost
