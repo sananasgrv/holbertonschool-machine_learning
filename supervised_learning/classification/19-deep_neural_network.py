@@ -61,3 +61,12 @@ class DeepNeuralNetwork:
             self.__cache['A' + str(l)] = A_curr
 
         return self.__cache['A' + str(self.__L)], self.__cache
+
+    def cost(self, Y, A):
+        """Documented"""
+        m = Y.shape[1]
+
+        loss = Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)
+        cost = -np.sum(loss) / m
+
+        return cost
