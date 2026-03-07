@@ -27,7 +27,7 @@ class DeepNeuralNetwork:
             prev_layer_size = nx if i == 1 else layers[i - 2]
 
             self.weights['W' + str(i)] = (
-                    np.random.randn(layers[i - 1],prev_layer_size) *
+                    np.random.randn(layers[i - 1], prev_layer_size) *
                     np.sqrt(2 / prev_layer_size))
 
             self.weights['b' + str(i)] = np.zeros((layers[i - 1], 1))
