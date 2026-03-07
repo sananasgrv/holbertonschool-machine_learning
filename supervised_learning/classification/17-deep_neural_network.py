@@ -32,12 +32,12 @@ class DeepNeuralNetwork:
 
             self.__weights['b' + str(i)] = np.zeros((layers[i - 1], 1))
 
-        @property
-        def weights(self):
-            return self.__weights
-        @property
-        def cache(self):
-            return self.__cache
-        @property
-        def L(self):
-            return self.__L
+    @property
+    def weights(self):
+        return self.__weights
+    @property
+    def cache(self):
+        return self.__cache
+    @property
+    def L(self):
+        return self.__L
