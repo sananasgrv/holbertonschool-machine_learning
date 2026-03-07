@@ -48,17 +48,17 @@ class DeepNeuralNetwork:
         """Documented"""
         self.__cache['A0'] = X
 
-        for i in range(1, self.__L + 1):
-            A_prev = self.__cache['A' + str(i - 1)]
+        for l in range(1, self.__L + 1):
+            A_prev = self.__cache['A' + str(l - 1)]
 
-            W = self.__weights['W' + str(i)]
-            b = self.__weights['b' + str(i)]
+            W = self.__weights['W' + str(l)]
+            b = self.__weights['b' + str(l)]
 
             Z = np.dot(W, A_prev) + b
 
             A_curr = 1 / (1 + np.exp(-Z))
 
-            self.__cache['A' + str(i)] = A_curr
+            self.__cache['A' + str(l)] = A_curr
 
         return self.__cache['A' + str(self.__L)], self.__cache
 
