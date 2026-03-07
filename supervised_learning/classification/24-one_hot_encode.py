@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-""""Documented"""
+"""Doc"""
 import numpy as np
 
+
 def one_hot_encode(Y, classes):
-    """Documented"""
+    """Doc"""
+
     if (not isinstance(Y, np.ndarray) or
             not isinstance(classes, int) or
             classes <= 0):
@@ -12,8 +14,8 @@ def one_hot_encode(Y, classes):
     m = Y.shape[0]
 
     try:
-        onehot = np.zeros((classes, m))
-        onehot[Y, np.arange(classes)] = 1
-        return onehot
+        one_hot = np.zeros((classes, m))
+        one_hot[Y, np.arange(m)] = 1
+        return one_hot
     except Exception:
         return None
