@@ -13,7 +13,7 @@ def one_hot_encode(Y, classes):
 
     try:
         onehot = np.zeros((classes, m))
-        onehot[np.arange(classes), Y] = 1
+        onehot[Y, np.arange(classes)] = 1
         return onehot
-    except ValueError:
+    except Exception:
         return None
