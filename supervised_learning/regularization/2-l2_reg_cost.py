@@ -6,6 +6,5 @@ import tensorflow as tf
 def l2_reg_cost(cost, model):
     """Documented"""
 
-    total_cost = cost + tf.add_n(model.losses)
-
-    return total_cost
+    total_costs = [cost + loss for loss in model.losses]
+    return total_costs
