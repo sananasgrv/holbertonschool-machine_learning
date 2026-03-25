@@ -17,6 +17,5 @@ def one_hot(labels, classes=None):
     None
     """
     if classes is None:
-        classes = K.cast(K.reduce_max(labels) + 1, K.int32)
-
-    return K.one_hot(labels, depth=classes)
+        classes = labels.max() + 1
+    return K.utils.to_categorical(labels, num_classes=classes)
