@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Documented"""
-import tensorflow.keras as K
+import tensorflow as tf
 
-def optimize_model(network, alpha, beta1, beta2):
+
+def one_hot(labels, classes=None):
     """
     Sets up Adam optimization for a keras model
 
@@ -15,3 +16,7 @@ def optimize_model(network, alpha, beta1, beta2):
     Returns:
     None
     """
+    if classes is None:
+        classes = tf.cast(tf.reduce_max(labels) + 1, tf.int32)
+
+    return tf.one_hot(labels, depth=classes)

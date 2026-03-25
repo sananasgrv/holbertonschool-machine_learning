@@ -3,26 +3,28 @@
 import tensorflow.keras as K
 
 
-def one_hot(labels, classes=None):
+def optimize_model(network, alpha, beta1, beta2):
     """
-    The last dimension of the one-hot matrix must be the number of classes
-    Returns: the one-hot matrix
+    Sets up Adam optimization for a keras model
+
+    Parameters:
+    network: keras model to optimize
+    alpha (float): learning rate
+    beta1 (float): first Adam parameter
+    beta2 (float): second Adam parameter
+
+    Returns:
+    None
     """
 
-    if not isinstance(labels, np.ndarray):
-        return None
+    optimizer = K.optimizers.Adam(
+        learning_rate=alpha,
+        beta_1=beta1,
+        beta_2=beta2
+    )
 
-        # Flatten in case labels are not 1D
-    labels = labels.flatten()
-
-    # Determine number of classes if not provided
-    if classes is None:
-        classes = np.max(labels) + 1
-
-    m = labels.shape[0]
-
-    # Create one-hot matrix
-    one_hot_matrix = np.zeros((m, classes))
-    one_hot_matrix[np.arange(m), labels] = 1
-
-    return one_hot_matrix
+    network.compile(
+        optimizer=optimizer,
+        loss='categorical_crossentropy',
+        metrics=['accuracy']
+    )
