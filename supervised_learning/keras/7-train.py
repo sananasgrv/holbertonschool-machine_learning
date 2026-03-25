@@ -3,17 +3,19 @@
 import tensorflow.keras as K
 
 
-def train_model(network, data, labels, batch_size, epochs,
-                validation_data=None, early_stopping=False,
-                patience=0, verbose=True, shuffle=False):
+def train_model(network, data, labels, batch_size, epochs, validation_data=None,
+                early_stopping=False, patience=0, learning_rate_decay=False,
+                alpha=0.1, decay_rate=1, verbose=True, shuffle=False):
     """
-    early_stopping is a boolean that indicates whether
-    early stopping should be used
+    learning_rate_decay is a boolean that indicates whether learning rate decay should be used
 
-    early stopping should only be performed if validation_data exists
-    early stopping should be based on validation loss
+    learning rate decay should only be performed if validation_data exists
+    the decay should be performed using inverse time decay
+    the learning rate should decay in a stepwise fashion after each epoch
+    each time the learning rate updates, Keras should print a message
 
-    patience is the patience used for early stopping
+    alpha is the initial learning rate
+    decay_rate is the decay rate
     """
     callbacks = []
 
