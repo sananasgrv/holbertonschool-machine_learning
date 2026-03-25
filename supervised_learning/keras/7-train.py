@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """Documented"""
-from gc import callbacks
-
 import tensorflow.keras as K
 
 
@@ -32,6 +30,5 @@ def train_model(network, data, labels, batch_size, epochs,
         epochs=epochs,
         verbose=verbose,
         shuffle=shuffle,
-        validation_data = validation_data,
-        callbacks = callbacks
+        validation_data = validation_data
     )
