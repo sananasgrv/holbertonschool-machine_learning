@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
-import tensorflow as tf
+import tensorflow.keras as K
 
 
 def one_hot(labels, classes=None):
@@ -17,6 +17,6 @@ def one_hot(labels, classes=None):
     None
     """
     if classes is None:
-        classes = tf.cast(tf.reduce_max(labels) + 1, tf.int32)
+        classes = K.cast(K.reduce_max(labels) + 1, K.int32)
 
-    return tf.one_hot(labels, depth=classes)
+    return K.one_hot(labels, depth=classes)
