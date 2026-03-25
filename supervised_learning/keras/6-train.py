@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """Documented"""
-from gc import callbacks
-
 import tensorflow.keras as K
 
 
