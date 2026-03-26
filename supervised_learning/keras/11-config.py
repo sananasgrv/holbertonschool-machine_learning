@@ -13,9 +13,11 @@ def save_config(network, filename):
     with open(filename, 'w') as f:
         f.write(config)
 
+
 def load_config(filename):
     """
-    filename is the path of the file containing the model's configuration in JSON format
+    filename is the path of the file containing
+    the model's configuration in JSON format
     Returns: the loaded model
     """
     with open(filename, 'r') as f:
