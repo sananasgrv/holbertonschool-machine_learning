@@ -25,6 +25,16 @@ def train_model(network, data, labels, batch_size, epochs, validation_data=None,
             patience=patience
         ))
 
+    if learning_rate_decay and validation_data is not None:
+        def schedule(epoch):
+            """Inverse time decay schedule."""
+            return alpha / (1 + decay_rate * epoch)
+
+        callbacks.append(K.callbacks.LearningRateScheduler(
+            schedule,
+            verbose=1
+        ))
+
     return network.fit(
         data,
         labels,
