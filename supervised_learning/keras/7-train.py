@@ -3,11 +3,13 @@
 import tensorflow.keras as K
 
 
-def train_model(network, data, labels, batch_size, epochs, validation_data=None,
+def train_model(network, data, labels, batch_size, epochs,
+                validation_data=None,
                 early_stopping=False, patience=0, learning_rate_decay=False,
                 alpha=0.1, decay_rate=1, verbose=True, shuffle=False):
     """
-    learning_rate_decay is a boolean that indicates whether learning rate decay should be used
+    learning_rate_decay is a boolean that indicates
+    whether learning rate decay should be used
 
     learning rate decay should only be performed if validation_data exists
     the decay should be performed using inverse time decay
@@ -42,6 +44,6 @@ def train_model(network, data, labels, batch_size, epochs, validation_data=None,
         epochs=epochs,
         verbose=verbose,
         shuffle=shuffle,
-        validation_data = validation_data,
-        callbacks = callbacks
+        validation_data=validation_data,
+        callbacks=callbacks
     )
