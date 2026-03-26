@@ -10,7 +10,7 @@ def save_weights(network, filename, save_format='keras'):
     save_format is the format in which the weights should be saved
     Returns: None
     """
-    network.save_weights(filename,save_format=save_format)
+    network.save_weights(filename, save_format=save_format)
 
 
 def load_weights(network, filename):
