@@ -3,7 +3,7 @@
 import tensorflow as tf
 
 
-def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
+def create_momentum_op(alpha, beta1):
     """
     that sets up the gradient descent with
     momentum optimization algorithm in TensorFlow:
@@ -13,10 +13,8 @@ def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     Returns: optimizer
 
     """
-    # Update second moment
-    s = beta2 * s + (1 - beta2) * np.square(grad)
-
-    # Update variable
-    var = var - alpha * grad / (np.sqrt(s) + epsilon)
-
-    return var, s
+    optimizer = tf.keras.optimizers.SGD(
+        learning_rate=alpha,
+        momentum=beta1
+    )
+    return optimizer
