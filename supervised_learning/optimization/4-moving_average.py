@@ -3,22 +3,15 @@
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
-def create_mini_batches(X, Y, batch_size):
+ef moving_average(data, beta):
     """
-    That creates mini-batches to be used for training a
-    neural network using mini-batch gradient descent:
+    that calculates the weighted moving average of a data set:
 
-    X is a numpy.ndarray of shape (m, nx) representing input data
-        m is the number of data points
-        nx is the number of features in X
-    Y is a numpy.ndarray of shape (m, ny) representing the labels
-        m is the same number of data points as in X
-        ny is the number of classes for classification tasks.
-    batch_size is the number of data points in a batch
-    Returns: list of mini-batches containing tuples (X_batch, Y_batch)
-    Your function should allow for a smaller final batch
-    (i.e. use the entire dataset)
-    You should use shuffle_data = __import__('2-shuffle_data').shuffle_data
+    data is the list of data to calculate the moving average of
+    beta is the weight used for the moving average
+    Your moving average calculation should use bias correction
+    Returns: a list containing the moving averages of data
+
     """
 
     X, Y=shuffle_data(X, Y)
