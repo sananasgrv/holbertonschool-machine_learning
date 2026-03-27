@@ -3,7 +3,7 @@
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
-ef moving_average(data, beta):
+def moving_average(data, beta):
     """
     that calculates the weighted moving average of a data set:
 
@@ -13,13 +13,12 @@ ef moving_average(data, beta):
     Returns: a list containing the moving averages of data
 
     """
+    v = 0
+    averages = []
 
-    X, Y=shuffle_data(X, Y)
-    mini_batches=[]
+    for i, x in enumerate(data):
+        v = beta * v + (1 - beta) * x
+        bias_correction = 1 - beta ** (i + 1)
+        averages.append(v / bias_correction)
 
-    for i in range(0, X.shape[0], batch_size):
-        X_batch = X[i:i+batch_size]
-        Y_batch = Y[i:i+batch_size]
-        mini_batches.append((X_batch, Y_batch))
-
-    return mini_batches
+    return averages
