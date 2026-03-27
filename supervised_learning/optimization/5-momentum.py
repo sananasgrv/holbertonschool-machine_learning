@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
 """Documented"""
-shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
-def moving_average(data, beta):
+def update_variables_momentum(alpha, beta1, var, grad, v):
     """
-    that calculates the weighted moving average of a data set:
+    that updates a variable using the gradient descent with momentum optimization algorithm:
 
-    data is the list of data to calculate the moving average of
-    beta is the weight used for the moving average
-    Your moving average calculation should use bias correction
-    Returns: a list containing the moving averages of data
-
+    alpha is the learning rate
+    beta1 is the momentum weight
+    var is a numpy.ndarray containing the variable to be updated
+    grad is a numpy.ndarray containing the gradient of var
+    v is the previous first moment of var
+    Returns: the updated variable and the new moment, respectively
     """
-    v = 0
-    averages = []
+    v_new = beta1 * v + (1 - beta1) * grad
 
-    for i, x in enumerate(data):
-        v = beta * v + (1 - beta) * x
-        bias_correction = 1 - beta ** (i + 1)
-        averages.append(v / bias_correction)
+    var_updated = var - alpha * v_new
 
-    return averages
+    return var_updated, v_new
