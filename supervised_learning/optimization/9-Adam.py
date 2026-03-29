@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
-import tensorflow as tf
-
+import numpy as npg
 
 def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
     """
