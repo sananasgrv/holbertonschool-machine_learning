@@ -20,8 +20,8 @@ def create_mini_batches(X, Y, batch_size):
     (i.e. use the entire dataset)
     You should use shuffle_data = __import__('2-shuffle_data').shuffle_data
     """
-    X, Y=shuffle_data(X, Y)
-    mini_batches=[]
+    X, Y = shuffle_data(X, Y)
+    mini_batches = []
 
     for i in range(0, X.shape[0], batch_size):
         X_batch = X[i:i+batch_size]
