@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Same convolution on grayscale images"""
-
 import numpy as np
+
 
 def convolve_grayscale_same(images, kernel):
     """
