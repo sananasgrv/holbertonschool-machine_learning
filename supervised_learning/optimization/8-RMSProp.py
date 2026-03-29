@@ -2,6 +2,7 @@
 """Documented"""
 import tensorflow as tf
 
+
 def create_RMSProp_op(alpha, beta2, epsilon):
     """
     that sets up the RMSProp optimization algorithm in TensorFlow:
