@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-"""Documented"""
-import tensorflow as tf
+"""Module that conducts forward propagation using Dropout."""
+
+import numpy as np
 
 
 def dropout_forward_prop(X, weights, L, keep_prob):
-    """
-    that conducts forward propagation using Dropout:
+    """Conducts forward propagation using Dropout.
 
-    X is a numpy.ndarray of shape (nx, m) containing the input data for the network
-        nx is the number of input features
-        m is the number of data points
-    weights is a dictionary of the weights and biases of the neural network
-    L the number of layers in the network
-    keep_prob is the probability that a node will be kept
-    All layers except the last should use the tanh activation function
-    The last layer should use the softmax activation function
-    Returns: a dictionary containing the outputs of each layer and the dropout mask used on each layer (see example for format)
+    Args:
+        X: numpy.ndarray of shape (nx, m) containing the input data.
+        weights: dictionary of the weights and biases of the neural network.
+        L: the number of layers in the network.
+        keep_prob: the probability that a node will be kept.
+
+    Returns:
+        Dictionary containing the outputs of each layer and dropout masks.
     """
     cache = {}
     cache['A0'] = X
