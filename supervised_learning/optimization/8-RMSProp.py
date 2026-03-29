@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Documented"""
-import numpy as np
-
+import tensorflow as tf
 
 def create_RMSProp_op(alpha, beta2, epsilon):
     """
