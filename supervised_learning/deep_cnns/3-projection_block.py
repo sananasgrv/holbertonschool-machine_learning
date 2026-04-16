@@ -46,7 +46,8 @@ def projection_block(A_prev, filters, s=2):
 
     # Projection shortcut: 1x1 convolution with stride s to match main path
     shortcut = K.layers.Conv2D(filters=F12, kernel_size=(1, 1), strides=(s, s),
-                               padding='same', kernel_initializer=initializer)(A_prev)
+                               padding='same',
+                               kernel_initializer=initializer)(A_prev)
     shortcut = K.layers.BatchNormalization(axis=-1)(shortcut)
 
     # Final step: Add shortcut to main path and apply ReLU
