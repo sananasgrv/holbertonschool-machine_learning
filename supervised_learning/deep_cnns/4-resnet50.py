@@ -15,47 +15,44 @@ def resnet50():
     Returns:
         The Keras model
     """
-    initializer = K.initializers.HeNormal(seed=0)
-    inputs = K.Input(shape=(224, 224, 3))
+    init = K.initializers.HeNormal(seed=0)
+    X = K.Input(shape=(224, 224, 3))
 
-    # Stage 1: Zero-padding and Initial Convolution
-    x = K.layers.ZeroPadding2D((3, 3))(inputs)
-    x = K.layers.Conv2D(64, (7, 7), strides=(2, 2),
-                        kernel_initializer=initializer)(x)
-    x = K.layers.BatchNormalization(axis=-1)(x)
-    x = K.layers.Activation('relu')(x)
-    x = K.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same')(x)
+    C = K.layers.Conv2D(
+        64, (7, 7), strides=(2, 2), padding='same',
+        kernel_initializer=init
+    )(X)
+    C = K.layers.BatchNormalization(axis=3)(C)
+    C = K.layers.Activation('relu')(C)
+    C = K.layers.MaxPooling2D(
+        (3, 3), strides=(2, 2), padding='same'
+    )(C)
 
-    # Stage 2: 3 blocks
-    x = projection_block(x, [64, 64, 256], s=1)
-    x = identity_block(x, [64, 64, 256])
-    x = identity_block(x, [64, 64, 256])
+    C = projection_block(C, [64, 64, 256], s=1)
+    C = identity_block(C, [64, 64, 256])
+    C = identity_block(C, [64, 64, 256])
 
-    # Stage 3: 4 blocks
-    x = projection_block(x, [128, 128, 512], s=2)
-    x = identity_block(x, [128, 128, 512])
-    x = identity_block(x, [128, 128, 512])
-    x = identity_block(x, [128, 128, 512])
+    C = projection_block(C, [128, 128, 512], s=2)
+    C = identity_block(C, [128, 128, 512])
+    C = identity_block(C, [128, 128, 512])
+    C = identity_block(C, [128, 128, 512])
 
-    # Stage 4: 6 blocks
-    x = projection_block(x, [256, 256, 1024], s=2)
-    x = identity_block(x, [256, 256, 1024])
-    x = identity_block(x, [256, 256, 1024])
-    x = identity_block(x, [256, 256, 1024])
-    x = identity_block(x, [256, 256, 1024])
-    x = identity_block(x, [256, 256, 1024])
+    C = projection_block(C, [256, 256, 1024], s=2)
+    C = identity_block(C, [256, 256, 1024])
+    C = identity_block(C, [256, 256, 1024])
+    C = identity_block(C, [256, 256, 1024])
+    C = identity_block(C, [256, 256, 1024])
+    C = identity_block(C, [256, 256, 1024])
 
-    # Stage 5: 3 blocks
-    x = projection_block(x, [512, 512, 2048], s=2)
-    x = identity_block(x, [512, 512, 2048])
-    x = identity_block(x, [512, 512, 2048])
+    C = projection_block(C, [512, 512, 2048], s=2)
+    C = identity_block(C, [512, 512, 2048])
+    C = identity_block(C, [512, 512, 2048])
 
-    # Final Stage: Average Pooling and Dense Output
-    x = K.layers.AveragePooling2D((7, 7))(x)
-    x = K.layers.Flatten()(x)
-    x = K.layers.Dense(1000, activation='softmax',
-                       kernel_initializer=initializer)(x)
+    C = K.layers.AveragePooling2D(
+        (7, 7), strides=(1, 1), padding='valid'
+    )(C)
+    output = K.layers.Dense(
+        1000, activation='softmax', kernel_initializer=init
+    )(C)
 
-    model = K.Model(inputs=inputs, outputs=x)
-
-    return model
+    return K.models.Model(inputs=X, outputs=output)
