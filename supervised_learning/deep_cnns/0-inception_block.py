@@ -24,13 +24,15 @@ def inception_block(A_prev, filters):
                               activation='relu')(branch3)
 
     # 4. Max Pooling followed by 1x1 Convolution branch
-    # Note: The paper uses a 3x3 max pooling with stride 1 to maintain dimensions
+    # Note: The paper uses a 3x3 max p
+    # ooling with stride 1 to maintain dimensions
     branch4 = K.layers.MaxPooling2D(pool_size=(3, 3), strides=(1, 1),
                                     padding='same')(A_prev)
     branch4 = K.layers.Conv2D(filters=FPP, kernel_size=(1, 1), padding='same',
                               activation='relu')(branch4)
 
     # Concatenate all branches along the filter (last) axis
-    output = K.layers.Concatenate(axis=-1)([branch1, branch2, branch3, branch4])
+    output = K.layers.Concatenate(axis=-1)([branch1, branch2,
+                                            branch3, branch4])
 
     return output
