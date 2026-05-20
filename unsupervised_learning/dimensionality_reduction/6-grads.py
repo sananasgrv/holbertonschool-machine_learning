@@ -38,7 +38,8 @@ def grads(Y, P):
 
     for i in range(n):
         # (Y[i] - Y) ifadesi (n, ndim) boyutunda fark matrisidir
-        # stiffness[i, :, None] ise (n, 8-tsne.py) boyutuna genişletilerek çarpılır
+        # stiffness[i, :, None] ise
+        # (n, 8-tsne.py) boyutuna genişletilerek çarpılır
         dY[i] = np.sum(stiffness[i, :, None] * (Y[i] - Y), axis=0)
 
     return dY, Q
