@@ -5,8 +5,10 @@ import numpy as np
 import os
 import cv2
 
+
 class Yolo:
     """Class of Yolo"""
+
     def __init__(self, model_path, classes_path,
                  class_t, nms_t, anchors):
         self.model = K.models.load_model(model_path)
