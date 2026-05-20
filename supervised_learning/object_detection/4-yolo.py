@@ -8,7 +8,6 @@ import cv2
 
 class Yolo:
     """Class of Yolo"""
-
     def __init__(self, model_path, classes_path,
                  class_t, nms_t, anchors):
         self.model = K.models.load_model(model_path)
@@ -60,7 +59,7 @@ class Yolo:
         return boxes, box_confidences, box_class_probs
 
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
-        """Filter of boxes"""
+        """Filtered Boxes"""
         filtered_boxes = []
         box_classes = []
         box_scores = []
@@ -84,7 +83,7 @@ class Yolo:
         return filtered_boxes, box_classes, box_scores
 
     def non_max_suppression(self, filtered_boxes, box_classes, box_scores):
-        """Non max suppression"""
+        """Non-Max Suppression (NMS)"""
         box_predictions = []
         predicted_box_classes = []
         predicted_box_scores = []
