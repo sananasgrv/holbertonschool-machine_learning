@@ -2,8 +2,7 @@
 """Object Detection"""
 from tensorflow import keras as K
 import numpy as np
-import os
-import cv2
+
 
 class Yolo:
     """Class of Yolo"""
@@ -156,28 +155,3 @@ class Yolo:
 
         return images, image_paths
 
-
-    def preprocess_images(self, images):
-        """Preprocess Images"""
-        input_h = self.model.input.shape[2]
-        input_w = self.model.input.shape[1]
-
-        pimages = []
-        image_shapes = []
-
-        for image in images:
-            image_shapes.append(image.shape[:2])
-
-            resized = cv2.resize(
-                image,
-                (input_w, input_h),
-                interpolation=cv2.INTER_CUBIC
-            )
-
-            rescaled = resized / 255.0
-            pimages.append(rescaled)
-
-        pimages = np.array(pimages)
-        image_shapes = np.array(image_shapes)
-
-        return (pimages, image_shapes)
