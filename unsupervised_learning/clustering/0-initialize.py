@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
+"""Clustering"""
 import numpy as np
-"""
-Clustering
-"""
 
 
 def initialize(X, k):
-    """
-    Initializes cluster centroids for K-means clustering.
-    """
-
-    if type(k) is not int or k <= 0:
+    """Initializes cluster centroids for K-means"""
+    if type(X) is not np.ndarray or type(k) is not int or k <= 0:
         return None
 
-    if type(X) is not np.ndarray or len(X.shape) != 2:
+    if len(X.shape) != 2:
         return None
 
     n, d = X.shape
-
-    clusters = np.random.uniform(np.min(X, axis=0), np.max(X, axis=0),
-                                 size=(k, d))
-
-    return clusters
+    if n == 0:
+        return None
+    mins = X.min(axis=0)
+    maxs = X.max(axis=0)
+    centroids = np.random.uniform(mins, maxs, size=(k, d))
+    return centroids
