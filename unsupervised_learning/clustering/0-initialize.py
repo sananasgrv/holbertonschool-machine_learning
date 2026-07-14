@@ -4,6 +4,7 @@ import numpy as np
 Clustering
 """
 
+
 def initialize(X, k):
     """
     Initializes cluster centroids for K-means clustering.
