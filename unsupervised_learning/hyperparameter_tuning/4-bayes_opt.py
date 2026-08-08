@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Hyperparameter tuning using Gaussian Processes."""
 import numpy as np
+from scipy.stats import norm
+
 GP = __import__('2-gp').GaussianProcess
 
 
@@ -15,7 +17,8 @@ class BayesianOptimization:
         self.gp = GP(X_init, Y_init, l, sigma_f)
         self.xsi = xsi
         self.minimize = minimize
-        self.X_s = np.linspace(bounds[0], bounds[1], ac_samples).reshape(-1, 1)
+        self.X_s = np.linspace(
+            bounds[0], bounds[1], ac_samples).reshape(-1, 1)
 
     def acquisition(self):
         """Function that calculates the next best sample location"""
@@ -29,12 +32,14 @@ class BayesianOptimization:
             improve = mu - best - self.xsi
 
         Z = np.zeros_like(mu)
-        Z[sigma != 0] = improve[sigma != 0] / sigma[sigma != 0]
+        nonzero = sigma != 0
+        Z[nonzero] = improve[nonzero] / sigma[nonzero]
 
         EI = np.zeros_like(mu)
-        nonzero = sigma != 0
-        EI[nonzero] = improve[nonzero] * norm.cdf(Z[nonzero]) + \
-            sigma[nonzero] * norm.pdf(Z[nonzero])
+        EI[nonzero] = (
+            improve[nonzero] * norm.cdf(Z[nonzero])
+            + sigma[nonzero] * norm.pdf(Z[nonzero])
+        )
 
         X_next = self.X_s[np.argmax(EI)]
 
