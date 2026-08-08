@@ -19,4 +19,3 @@ class GaussianProcess:
         sqr = (X1 - X2.T) ** 2
         k = self.sigma_f ** 2 * np.exp(-sqr / (2 * self.l ** 2))
         return k
-    
