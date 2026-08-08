@@ -36,8 +36,7 @@ class BayesianOptimization:
         Z[nonzero] = improve[nonzero] / sigma[nonzero]
 
         EI = np.zeros_like(mu)
-        EI[nonzero] = (
-            improve[nonzero] * norm.cdf(Z[nonzero]) +
+        EI[nonzero] = (improve[nonzero] * norm.cdf(Z[nonzero]) +
             sigma[nonzero] * norm.pdf(Z[nonzero])
         )
 
