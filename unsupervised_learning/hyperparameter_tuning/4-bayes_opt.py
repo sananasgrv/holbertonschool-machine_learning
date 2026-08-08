@@ -16,18 +16,26 @@ class BayesianOptimization:
         self.xsi = xsi
         self.minimize = minimize
         self.X_s = np.linspace(bounds[0], bounds[1], ac_samples).reshape(-1, 1)
-        
+
     def acquisition(self):
-        """Calculates the next best sample location"""
+        """Function that calculates the next best sample location"""
         mu, sigma = self.gp.predict(self.X_s)
+
         if self.minimize:
-            mu_sample_opt = np.min(self.gp.Y)
-            imp = mu_sample_opt - mu - self.xsi
+            best = np.min(self.gp.Y)
+            improve = best - mu - self.xsi
         else:
-            mu_sample_opt = np.max(self.gp.Y)
-            imp = mu - mu_sample_opt - self.xsi
-        Z = imp / sigma
-        ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
-        ei[sigma == 0.0] = 0.0
-        X_next = self.X_s[np.argmax(ei)]
-        return X_next, ei
+            best = np.max(self.gp.Y)
+            improve = mu - best - self.xsi
+
+        Z = np.zeros_like(mu)
+        Z[sigma != 0] = improve[sigma != 0] / sigma[sigma != 0]
+
+        EI = np.zeros_like(mu)
+        nonzero = sigma != 0
+        EI[nonzero] = improve[nonzero] * norm.cdf(Z[nonzero]) + \
+            sigma[nonzero] * norm.pdf(Z[nonzero])
+
+        X_next = self.X_s[np.argmax(EI)]
+
+        return X_next, EI
