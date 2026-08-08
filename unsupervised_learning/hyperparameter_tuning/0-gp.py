@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Hyperparameter tuning using Gaussian Processes."""
+import numpy as np
 
 
 def __init__(self, X_init, Y_init, l=1, sigma_f=1):
