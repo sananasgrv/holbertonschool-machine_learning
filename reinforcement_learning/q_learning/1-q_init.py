@@ -4,7 +4,7 @@ import numpy as np
 
 
 def q_init(env):
-    """Initialize the Q-table with zeros."""
+    """Comment"""
 
     states = env.observation_space.n
     actions = env.action_space.n
