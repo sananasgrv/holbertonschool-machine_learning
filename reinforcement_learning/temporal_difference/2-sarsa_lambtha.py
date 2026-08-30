@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
+
 """Comment"""
+
 import numpy as np
-
-
-epsilon_greedy = __import__('2-epsilon_greedy').epsilon_greedy
 
 
 def sarsa_lambtha(env, Q, lambtha, episodes=5000, max_steps=100,
@@ -16,15 +15,25 @@ def sarsa_lambtha(env, Q, lambtha, episodes=5000, max_steps=100,
 
         eligibility = np.zeros_like(Q)
 
-        action = epsilon_greedy(Q, state, epsilon)
+        if np.random.uniform(0, 1) < epsilon:
+            action = np.random.randint(Q.shape[1])
+        else:
+            action = np.argmax(Q[state])
 
         for step in range(max_steps):
             next_state, reward, terminated, truncated, _ = env.step(action)
 
+            if terminated and reward == 0:
+                reward = -1
+
             if terminated or truncated:
                 td_error = reward - Q[state, action]
             else:
-                next_action = epsilon_greedy(Q, next_state, epsilon)
+                if np.random.uniform(0, 1) < epsilon:
+                    next_action = np.random.randint(Q.shape[1])
+                else:
+                    next_action = np.argmax(Q[next_state])
+
                 td_error = (
                     reward
                     + gamma * Q[next_state, next_action]

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+
 """Comment"""
+
 import numpy as np
 
 
@@ -16,6 +18,9 @@ def td_lambtha(env, V, policy, lambtha, episodes=5000, max_steps=100,
             action = policy(state)
 
             next_state, reward, terminated, truncated, _ = env.step(action)
+
+            if terminated and reward == 0:
+                reward = -1
 
             if terminated or truncated:
                 td_error = reward - V[state]
