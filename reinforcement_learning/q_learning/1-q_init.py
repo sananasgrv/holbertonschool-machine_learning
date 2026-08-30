@@ -1,5 +1,6 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 """Comment"""
+import numpy as np
 
 
 def q_init(env):
