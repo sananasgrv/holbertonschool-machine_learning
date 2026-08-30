@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
-"""Comment"""
-import gymnasium as gym
+"""Has the trained agent play an episode of FrozenLake."""
+import numpy as np
 
 
-def load_frozen_lake(desc=None, map_name=None, is_slippery=False):
-    """Load FrozenLake environment."""
+def play(env, Q, max_steps=100):
+    """Has the trained agent play an episode, always exploiting the Q-table."""
+    state = env.reset()[0]
+    rendered_outputs = []
+    total_rewards = 0
 
-    env = gym.make(
-        "FrozenLake-v1",
-        desc=desc,
-        map_name=map_name,
-        is_slippery=is_slippery,
-        render_mode="ansi"
-    )
+    for step in range(max_steps):
+        rendered_outputs.append(env.render())
+        action = np.argmax(Q[state])
+        new_state, reward, terminated, truncated, info = env.step(action)
+        state = new_state
+        total_rewards = total_rewards + reward
 
-    return env
+        if terminated or truncated:
+            rendered_outputs.append(env.render())
+            break
+
+    return total_rewards, rendered_outputs
