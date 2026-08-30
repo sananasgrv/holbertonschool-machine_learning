@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+
 """Comment"""
+
 import numpy as np
 
 
@@ -26,12 +28,19 @@ def monte_carlo(env, V, policy, episodes=5000, max_steps=100,
             if terminated or truncated:
                 break
 
-        G = 0
+        visited = set()
 
-        for t in range(len(states) - 1, -1, -1):
-            G = gamma * G + rewards[t]
-
+        for t in range(len(states)):
             state = states[t]
+
+            if state in visited:
+                continue
+
+            visited.add(state)
+
+            G = 0
+            for k in range(t, len(rewards)):
+                G += (gamma ** (k - t)) * rewards[k]
 
             V[state] = V[state] + alpha * (G - V[state])
 
