@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
-"""Comment of File"""
+"""Comment"""
 import gymnasium as gym
 
+
 def load_frozen_lake(desc=None, map_name=None, is_slippery=False):
-    """Comment of Function"""
+    """Comment"""
     env = gymk.make("FrozenLake-v1",
                     desc = desc,
                     map_name = map_name
