@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+"""Comment"""
+import numpy as np
+
+
+def epsilon_greedy(Q, state, epsilon):
+    """Comment"""
+    p = np.random.uniform(0, 1)
+    if p < epsilon:
+        action = np.random.randint(0, Q.shape[1])
+    else:
+        action = np.argmax(Q[state])
+    return action
