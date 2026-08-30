@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Comment"""
+
+"""Has the trained agent play an episode of FrozenLake."""
+
 import numpy as np
 
 
 def play(env, Q, max_steps=100):
-    """Comment"""
+    """Has the trained agent play an episode."""
 
-    state = env.reset()[0]
-    rendered_outputs = []
+    state, _ = env.reset()
     total_rewards = 0
+    rendered_outputs = []
 
     for step in range(max_steps):
         rendered_outputs.append(env.render())
@@ -21,7 +23,9 @@ def play(env, Q, max_steps=100):
         total_rewards += reward
 
         if terminated or truncated:
-            rendered_outputs.append(env.render())
             break
+
+    # Display the final state
+    rendered_outputs.append(env.render())
 
     return total_rewards, rendered_outputs
