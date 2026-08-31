@@ -1,37 +1,28 @@
 #!/usr/bin/env python3
-
 """Comment"""
-
 import numpy as np
 
 
 def monte_carlo(env, V, policy, episodes=5000, max_steps=100,
                 alpha=0.1, gamma=0.99):
-    """Performs the Monte Carlo algorithm."""
-
+    """Comment"""
     for _ in range(episodes):
-        state, _ = env.reset()
-
-        episode = []
+        state = env.reset()[0]
+        states = [state]
+        rewards = []
 
         for _ in range(max_steps):
             action = policy(state)
-
-            next_state, reward, terminated, truncated, _ = env.step(action)
-
-            episode.append((state, reward))
-            state = next_state
-
+            state, reward, terminated, truncated, _ = env.step(action)
+            states.append(state)
+            rewards.append(reward)
             if terminated or truncated:
                 break
 
+
         G = 0
-
-        for t in range(len(episode) - 1, -1, -1):
-            state, reward = episode[t]
-
+        for st, reward in zip(states[:-1][::-1], rewards[::-1]):
             G = gamma * G + reward
-
-            V[state] += alpha * (G - V[state])
+            V[st] = V[st] + alpha * (G - V[st])
 
     return V
