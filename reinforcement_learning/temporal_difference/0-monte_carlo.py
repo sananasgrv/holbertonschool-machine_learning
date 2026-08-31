@@ -19,7 +19,8 @@ def monte_carlo(env, V, policy, episodes=5000, max_steps=100,
             if terminated or truncated:
                 break
 
-
+        # Walk the episode backward, accumulate the return, update each
+        # visited state toward it (every-visit).
         G = 0
         for st, reward in zip(states[:-1][::-1], rewards[::-1]):
             G = gamma * G + reward
