@@ -9,17 +9,16 @@ def monte_carlo(env, V, policy, episodes=5000, max_steps=100,
                 alpha=0.1, gamma=0.99):
     """Performs the Monte Carlo algorithm."""
 
-    for episode in range(episodes):
+    for _ in range(episodes):
         state, _ = env.reset()
 
         states = []
         rewards = []
 
-        for step in range(max_steps):
+        for _ in range(max_steps):
             states.append(state)
 
             action = policy(state)
-
             next_state, reward, terminated, truncated, _ = env.step(action)
 
             rewards.append(reward)
@@ -42,6 +41,6 @@ def monte_carlo(env, V, policy, episodes=5000, max_steps=100,
             for k in range(t, len(rewards)):
                 G += (gamma ** (k - t)) * rewards[k]
 
-            V[state] = V[state] + alpha * (G - V[state])
+            V[state] += alpha * (G - V[state])
 
     return V
